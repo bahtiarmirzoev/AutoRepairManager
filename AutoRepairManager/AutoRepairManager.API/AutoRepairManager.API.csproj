@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AutoRepairManager.Services\AutoRepairManager.Services.csproj" />
     <ProjectReference Include="..\AutoRepairManager.Models\AutoRepairManager.Models.csproj" />
+    <ProjectReference Include="..\AutoRepairManager.Data\AutoRepairManager.Data.csproj" />
   </ItemGroup>
 
 </Project>

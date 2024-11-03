@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutoRepairManager.Models
+namespace AutoRepairManager.Models.Models
 {
     public class Invoice
     {
@@ -16,7 +16,7 @@ namespace AutoRepairManager.Models
 
         public DateTime InvoiceDate { get; set; } = DateTime.UtcNow;
 
-        public decimal Amount{  get; set; }
+        public decimal Amount { get; set; }
 
         public string InvoiceStatus { get; set; }
 

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AutoRepairManager.Data")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+04bbf56537b7fba776e0e7d34c473d9c87a6f0d4")]
 [assembly: System.Reflection.AssemblyProductAttribute("AutoRepairManager.Data")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AutoRepairManager.Data")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

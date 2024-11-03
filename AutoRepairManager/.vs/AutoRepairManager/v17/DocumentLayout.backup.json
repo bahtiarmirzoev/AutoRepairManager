@@ -1,34 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\bakhaalle\\Desktop\\AutoRepairManager\\AutoRepairManager\\",
+  "WorkspaceRootPath": "C:\\Users\\bakhaalle\\Desktop\\course\\AutoRepairManager\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4ABA7C9A-3FBC-4148-98AE-2B2B05843693}|AutoRepairManager.Data\\AutoRepairManager.Data.csproj|c:\\users\\bakhaalle\\desktop\\autorepairmanager\\autorepairmanager\\autorepairmanager.data\\autorepairmanager.data.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{4ABA7C9A-3FBC-4148-98AE-2B2B05843693}|AutoRepairManager.Data\\AutoRepairManager.Data.csproj|solutionrelative:autorepairmanager.data\\autorepairmanager.data.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{4ABA7C9A-3FBC-4148-98AE-2B2B05843693}|AutoRepairManager.Data\\AutoRepairManager.Data.csproj|c:\\users\\bakhaalle\\desktop\\course\\autorepairmanager\\autorepairmanager.data\\autorepairmanagerdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4ABA7C9A-3FBC-4148-98AE-2B2B05843693}|AutoRepairManager.Data\\AutoRepairManager.Data.csproj|solutionrelative:autorepairmanager.data\\autorepairmanagerdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{78B96E7E-CAFA-4C1B-8A4D-86EEB89D4544}|AutoRepairManager.API\\AutoRepairManager.API.csproj|c:\\users\\bakhaalle\\desktop\\autorepairmanager\\autorepairmanager\\autorepairmanager.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{78B96E7E-CAFA-4C1B-8A4D-86EEB89D4544}|AutoRepairManager.API\\AutoRepairManager.API.csproj|solutionrelative:autorepairmanager.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{17B59753-4793-47F8-AFCB-A639E3AC37FB}|AutoRepairManager.Models\\AutoRepairManager.Models.csproj|c:\\users\\bakhaalle\\desktop\\course\\autorepairmanager\\autorepairmanager.models\\models\\servicetype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{17B59753-4793-47F8-AFCB-A639E3AC37FB}|AutoRepairManager.Models\\AutoRepairManager.Models.csproj|solutionrelative:autorepairmanager.models\\models\\servicetype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{78B96E7E-CAFA-4C1B-8A4D-86EEB89D4544}|AutoRepairManager.API\\AutoRepairManager.API.csproj|c:\\users\\bakhaalle\\desktop\\autorepairmanager\\autorepairmanager\\autorepairmanager.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{78B96E7E-CAFA-4C1B-8A4D-86EEB89D4544}|AutoRepairManager.API\\AutoRepairManager.API.csproj|solutionrelative:autorepairmanager.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{17B59753-4793-47F8-AFCB-A639E3AC37FB}|AutoRepairManager.Models\\AutoRepairManager.Models.csproj|c:\\users\\bakhaalle\\desktop\\course\\autorepairmanager\\autorepairmanager.models\\models\\repairorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{17B59753-4793-47F8-AFCB-A639E3AC37FB}|AutoRepairManager.Models\\AutoRepairManager.Models.csproj|solutionrelative:autorepairmanager.models\\models\\repairorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{17B59753-4793-47F8-AFCB-A639E3AC37FB}|AutoRepairManager.Models\\AutoRepairManager.Models.csproj|c:\\users\\bakhaalle\\desktop\\autorepairmanager\\autorepairmanager\\autorepairmanager.models\\validators\\customervalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{17B59753-4793-47F8-AFCB-A639E3AC37FB}|AutoRepairManager.Models\\AutoRepairManager.Models.csproj|solutionrelative:autorepairmanager.models\\validators\\customervalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{17B59753-4793-47F8-AFCB-A639E3AC37FB}|AutoRepairManager.Models\\AutoRepairManager.Models.csproj|c:\\users\\bakhaalle\\desktop\\autorepairmanager\\autorepairmanager\\autorepairmanager.models\\autorepairmanager.models.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{17B59753-4793-47F8-AFCB-A639E3AC37FB}|AutoRepairManager.Models\\AutoRepairManager.Models.csproj|solutionrelative:autorepairmanager.models\\autorepairmanager.models.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{17B59753-4793-47F8-AFCB-A639E3AC37FB}|AutoRepairManager.Models\\AutoRepairManager.Models.csproj|c:\\users\\bakhaalle\\desktop\\autorepairmanager\\autorepairmanager\\autorepairmanager.models\\validators\\repairhistoryvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{17B59753-4793-47F8-AFCB-A639E3AC37FB}|AutoRepairManager.Models\\AutoRepairManager.Models.csproj|solutionrelative:autorepairmanager.models\\validators\\repairhistoryvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{17B59753-4793-47F8-AFCB-A639E3AC37FB}|AutoRepairManager.Models\\AutoRepairManager.Models.csproj|c:\\users\\bakhaalle\\desktop\\autorepairmanager\\autorepairmanager\\autorepairmanager.models\\validators\\carvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{17B59753-4793-47F8-AFCB-A639E3AC37FB}|AutoRepairManager.Models\\AutoRepairManager.Models.csproj|solutionrelative:autorepairmanager.models\\validators\\carvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{17B59753-4793-47F8-AFCB-A639E3AC37FB}|AutoRepairManager.Models\\AutoRepairManager.Models.csproj|c:\\users\\bakhaalle\\desktop\\course\\autorepairmanager\\autorepairmanager.models\\models\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{17B59753-4793-47F8-AFCB-A639E3AC37FB}|AutoRepairManager.Models\\AutoRepairManager.Models.csproj|solutionrelative:autorepairmanager.models\\models\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -37,98 +25,80 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "DockedWidth": 318,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AutoRepairManager.Data",
-              "DocumentMoniker": "C:\\Users\\bakhaalle\\Desktop\\AutoRepairManager\\AutoRepairManager\\AutoRepairManager.Data\\AutoRepairManager.Data.csproj",
-              "RelativeDocumentMoniker": "AutoRepairManager.Data\\AutoRepairManager.Data.csproj",
-              "ToolTip": "C:\\Users\\bakhaalle\\Desktop\\AutoRepairManager\\AutoRepairManager\\AutoRepairManager.Data\\AutoRepairManager.Data.csproj",
-              "RelativeToolTip": "AutoRepairManager.Data\\AutoRepairManager.Data.csproj",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-11-02T23:25:38.723Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CustomerValidator.cs",
-              "DocumentMoniker": "C:\\Users\\bakhaalle\\Desktop\\AutoRepairManager\\AutoRepairManager\\AutoRepairManager.Models\\Validators\\CustomerValidator.cs",
-              "RelativeDocumentMoniker": "AutoRepairManager.Models\\Validators\\CustomerValidator.cs",
-              "ToolTip": "C:\\Users\\bakhaalle\\Desktop\\AutoRepairManager\\AutoRepairManager\\AutoRepairManager.Models\\Validators\\CustomerValidator.cs",
-              "RelativeToolTip": "AutoRepairManager.Models\\Validators\\CustomerValidator.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-02T23:12:44.52Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AutoRepairManager.Models",
-              "DocumentMoniker": "C:\\Users\\bakhaalle\\Desktop\\AutoRepairManager\\AutoRepairManager\\AutoRepairManager.Models\\AutoRepairManager.Models.csproj",
-              "RelativeDocumentMoniker": "AutoRepairManager.Models\\AutoRepairManager.Models.csproj",
-              "ToolTip": "C:\\Users\\bakhaalle\\Desktop\\AutoRepairManager\\AutoRepairManager\\AutoRepairManager.Models\\AutoRepairManager.Models.csproj",
-              "RelativeToolTip": "AutoRepairManager.Models\\AutoRepairManager.Models.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-11-02T23:08:52.208Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "RepairHistoryValidator.cs",
-              "DocumentMoniker": "C:\\Users\\bakhaalle\\Desktop\\AutoRepairManager\\AutoRepairManager\\AutoRepairManager.Models\\Validators\\RepairHistoryValidator.cs",
-              "RelativeDocumentMoniker": "AutoRepairManager.Models\\Validators\\RepairHistoryValidator.cs",
-              "ToolTip": "C:\\Users\\bakhaalle\\Desktop\\AutoRepairManager\\AutoRepairManager\\AutoRepairManager.Models\\Validators\\RepairHistoryValidator.cs",
-              "RelativeToolTip": "AutoRepairManager.Models\\Validators\\RepairHistoryValidator.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-02T23:08:15.409Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "CarValidator.cs",
-              "DocumentMoniker": "C:\\Users\\bakhaalle\\Desktop\\AutoRepairManager\\AutoRepairManager\\AutoRepairManager.Models\\Validators\\CarValidator.cs",
-              "RelativeDocumentMoniker": "AutoRepairManager.Models\\Validators\\CarValidator.cs",
-              "ToolTip": "C:\\Users\\bakhaalle\\Desktop\\AutoRepairManager\\AutoRepairManager\\AutoRepairManager.Models\\Validators\\CarValidator.cs",
-              "RelativeToolTip": "AutoRepairManager.Models\\Validators\\CarValidator.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-02T23:07:32.149Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\bakhaalle\\Desktop\\AutoRepairManager\\AutoRepairManager\\AutoRepairManager.API\\Program.cs",
-              "RelativeDocumentMoniker": "AutoRepairManager.API\\Program.cs",
-              "ToolTip": "C:\\Users\\bakhaalle\\Desktop\\AutoRepairManager\\AutoRepairManager\\AutoRepairManager.API\\Program.cs",
-              "RelativeToolTip": "AutoRepairManager.API\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABVAAAAAAAAAA==",
+              "Title": "ServiceType.cs",
+              "DocumentMoniker": "C:\\Users\\bakhaalle\\Desktop\\course\\AutoRepairManager\\AutoRepairManager.Models\\Models\\ServiceType.cs",
+              "RelativeDocumentMoniker": "AutoRepairManager.Models\\Models\\ServiceType.cs",
+              "ToolTip": "C:\\Users\\bakhaalle\\Desktop\\course\\AutoRepairManager\\AutoRepairManager.Models\\Models\\ServiceType.cs",
+              "RelativeToolTip": "AutoRepairManager.Models\\Models\\ServiceType.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAABIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-02T23:05:24.376Z",
+              "WhenOpened": "2024-11-03T20:08:58.56Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\bakhaalle\\Desktop\\AutoRepairManager\\AutoRepairManager\\AutoRepairManager.API\\appsettings.json",
-              "RelativeDocumentMoniker": "AutoRepairManager.API\\appsettings.json",
-              "ToolTip": "C:\\Users\\bakhaalle\\Desktop\\AutoRepairManager\\AutoRepairManager\\AutoRepairManager.API\\appsettings.json",
-              "RelativeToolTip": "AutoRepairManager.API\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-11-02T23:04:01.968Z",
+              "Title": "RepairOrder.cs",
+              "DocumentMoniker": "C:\\Users\\bakhaalle\\Desktop\\course\\AutoRepairManager\\AutoRepairManager.Models\\Models\\RepairOrder.cs",
+              "RelativeDocumentMoniker": "AutoRepairManager.Models\\Models\\RepairOrder.cs",
+              "ToolTip": "C:\\Users\\bakhaalle\\Desktop\\course\\AutoRepairManager\\AutoRepairManager.Models\\Models\\RepairOrder.cs",
+              "RelativeToolTip": "AutoRepairManager.Models\\Models\\RepairOrder.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-03T20:08:35.523Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AutoRepairManagerDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\bakhaalle\\Desktop\\course\\AutoRepairManager\\AutoRepairManager.Data\\AutoRepairManagerDbContext.cs",
+              "RelativeDocumentMoniker": "AutoRepairManager.Data\\AutoRepairManagerDbContext.cs",
+              "ToolTip": "C:\\Users\\bakhaalle\\Desktop\\course\\AutoRepairManager\\AutoRepairManager.Data\\AutoRepairManagerDbContext.cs",
+              "RelativeToolTip": "AutoRepairManager.Data\\AutoRepairManagerDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-03T17:00:01.171Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "FloatingWindowState": {
+        "Id": "8e76d3b6-a094-489d-88e7-48e72017f7f1",
+        "Display": 1,
+        "X": 926,
+        "Y": 80,
+        "Width": 1002,
+        "Height": 957,
+        "WindowState": 0
+      },
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Customer.cs",
+              "DocumentMoniker": "C:\\Users\\bakhaalle\\Desktop\\course\\AutoRepairManager\\AutoRepairManager.Models\\Models\\Customer.cs",
+              "RelativeDocumentMoniker": "AutoRepairManager.Models\\Models\\Customer.cs",
+              "ToolTip": "C:\\Users\\bakhaalle\\Desktop\\course\\AutoRepairManager\\AutoRepairManager.Models\\Models\\Customer.cs*",
+              "RelativeToolTip": "AutoRepairManager.Models\\Models\\Customer.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-03T20:07:05.04Z",
               "EditorCaption": ""
             }
           ]

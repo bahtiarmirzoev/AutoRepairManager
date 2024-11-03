@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutoRepairManager.Models
+namespace AutoRepairManager.Models.Models
 {
     public class RepairHistory
     {

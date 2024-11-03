@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoRepairManager.Models.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,8 @@ namespace AutoRepairManager.Models
 
         public string Name { get; set; }
 
-        public decimal Price { get; set; }  
+        public decimal Price { get; set; }
+
+        public ICollection<RepairOrder> RepairOrders { get; set; } = [];
     }
 }

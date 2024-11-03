@@ -29,6 +29,9 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+              "C:\\Users\\bakhaalle\\Desktop\\course\\AutoRepairManager\\AutoRepairManager.Data\\AutoRepairManager.Data.csproj": {
+                "projectPath": "C:\\Users\\bakhaalle\\Desktop\\course\\AutoRepairManager\\AutoRepairManager.Data\\AutoRepairManager.Data.csproj"
+              },
               "C:\\Users\\bakhaalle\\Desktop\\course\\AutoRepairManager\\AutoRepairManager.Models\\AutoRepairManager.Models.csproj": {
                 "projectPath": "C:\\Users\\bakhaalle\\Desktop\\course\\AutoRepairManager\\AutoRepairManager.Models\\AutoRepairManager.Models.csproj"
               },

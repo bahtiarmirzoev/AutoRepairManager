@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using AutoRepairManager.Models.Models;
+using FluentValidation;
 
 namespace AutoRepairManager.Models.Validators
 {

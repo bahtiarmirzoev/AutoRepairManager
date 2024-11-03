@@ -4865,6 +4865,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "AutoRepairManager.Data >= 1.0.0",
       "AutoRepairManager.Models >= 1.0.0",
       "AutoRepairManager.Services >= 1.0.0",
       "Microsoft.AspNetCore.OpenApi >= 8.0.10",
@@ -4900,6 +4901,9 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
+            "C:\\Users\\bakhaalle\\Desktop\\course\\AutoRepairManager\\AutoRepairManager.Data\\AutoRepairManager.Data.csproj": {
+              "projectPath": "C:\\Users\\bakhaalle\\Desktop\\course\\AutoRepairManager\\AutoRepairManager.Data\\AutoRepairManager.Data.csproj"
+            },
             "C:\\Users\\bakhaalle\\Desktop\\course\\AutoRepairManager\\AutoRepairManager.Models\\AutoRepairManager.Models.csproj": {
               "projectPath": "C:\\Users\\bakhaalle\\Desktop\\course\\AutoRepairManager\\AutoRepairManager.Models\\AutoRepairManager.Models.csproj"
             },

@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutoRepairManager.Models
+namespace AutoRepairManager.Models.Models
 {
 
     public enum UserRole
-    { 
+    {
         SuperAdmin,
-        Admin, 
-        Customer 
-    
+        Admin,
+        Customer
+
     }
     public class User
     {
@@ -22,6 +22,6 @@ namespace AutoRepairManager.Models
 
         public string PasswordHash { get; set; } // хэширование сделаю потом
 
-        public UserRole Role { get; set; } 
+        public UserRole Role { get; set; }
     }
 }

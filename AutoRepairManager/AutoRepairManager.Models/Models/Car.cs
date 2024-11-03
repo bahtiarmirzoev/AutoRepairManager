@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutoRepairManager.Models
+namespace AutoRepairManager.Models.Models
 {
     public class Car
     {
@@ -20,6 +20,11 @@ namespace AutoRepairManager.Models
 
         public Customer Customer { get; set; }
 
-        public ICollection<RepairHistory> RepairHistory { get; set; } = new List<RepairHistory>();
+        public ICollection<RepairHistory> RepairHistory { get; set; } = [];
+
+        public ICollection<RepairOrder> RepairOrders { get; set; } = [];
+
+        
+        
     }
 }
