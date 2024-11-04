@@ -1,0 +1,139 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\bakhaalle\\Desktop\\AutoRepairManager\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{AC6E6CE8-0FA1-4BE3-9BB5-E93D1304C986}|AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\AutoRepairManagerApp.Core.csproj|c:\\users\\bakhaalle\\desktop\\autorepairmanager\\autorepairmanagerapp\\src\\autorepairmanagerapp.core\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC6E6CE8-0FA1-4BE3-9BB5-E93D1304C986}|AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\AutoRepairManagerApp.Core.csproj|solutionrelative:autorepairmanagerapp\\src\\autorepairmanagerapp.core\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC6E6CE8-0FA1-4BE3-9BB5-E93D1304C986}|AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\AutoRepairManagerApp.Core.csproj|c:\\users\\bakhaalle\\desktop\\autorepairmanager\\autorepairmanagerapp\\src\\autorepairmanagerapp.core\\models\\repairlog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC6E6CE8-0FA1-4BE3-9BB5-E93D1304C986}|AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\AutoRepairManagerApp.Core.csproj|solutionrelative:autorepairmanagerapp\\src\\autorepairmanagerapp.core\\models\\repairlog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC6E6CE8-0FA1-4BE3-9BB5-E93D1304C986}|AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\AutoRepairManagerApp.Core.csproj|c:\\users\\bakhaalle\\desktop\\autorepairmanager\\autorepairmanagerapp\\src\\autorepairmanagerapp.core\\models\\car.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC6E6CE8-0FA1-4BE3-9BB5-E93D1304C986}|AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\AutoRepairManagerApp.Core.csproj|solutionrelative:autorepairmanagerapp\\src\\autorepairmanagerapp.core\\models\\car.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC6E6CE8-0FA1-4BE3-9BB5-E93D1304C986}|AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\AutoRepairManagerApp.Core.csproj|c:\\users\\bakhaalle\\desktop\\autorepairmanager\\autorepairmanagerapp\\src\\autorepairmanagerapp.core\\models\\autorepair.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC6E6CE8-0FA1-4BE3-9BB5-E93D1304C986}|AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\AutoRepairManagerApp.Core.csproj|solutionrelative:autorepairmanagerapp\\src\\autorepairmanagerapp.core\\models\\autorepair.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC6E6CE8-0FA1-4BE3-9BB5-E93D1304C986}|AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\AutoRepairManagerApp.Core.csproj|c:\\users\\bakhaalle\\desktop\\autorepairmanager\\autorepairmanagerapp\\src\\autorepairmanagerapp.core\\dto\\cardto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC6E6CE8-0FA1-4BE3-9BB5-E93D1304C986}|AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\AutoRepairManagerApp.Core.csproj|solutionrelative:autorepairmanagerapp\\src\\autorepairmanagerapp.core\\dto\\cardto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC6E6CE8-0FA1-4BE3-9BB5-E93D1304C986}|AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\AutoRepairManagerApp.Core.csproj|c:\\users\\bakhaalle\\desktop\\autorepairmanager\\autorepairmanagerapp\\src\\autorepairmanagerapp.core\\dto\\registrationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC6E6CE8-0FA1-4BE3-9BB5-E93D1304C986}|AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\AutoRepairManagerApp.Core.csproj|solutionrelative:autorepairmanagerapp\\src\\autorepairmanagerapp.core\\dto\\registrationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC6E6CE8-0FA1-4BE3-9BB5-E93D1304C986}|AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\AutoRepairManagerApp.Core.csproj|c:\\users\\bakhaalle\\desktop\\autorepairmanager\\autorepairmanagerapp\\src\\autorepairmanagerapp.core\\dto\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC6E6CE8-0FA1-4BE3-9BB5-E93D1304C986}|AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\AutoRepairManagerApp.Core.csproj|solutionrelative:autorepairmanagerapp\\src\\autorepairmanagerapp.core\\dto\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "RepairLog.cs",
+              "DocumentMoniker": "C:\\Users\\bakhaalle\\Desktop\\AutoRepairManager\\AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\Models\\RepairLog.cs",
+              "RelativeDocumentMoniker": "AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\Models\\RepairLog.cs",
+              "ToolTip": "C:\\Users\\bakhaalle\\Desktop\\AutoRepairManager\\AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\Models\\RepairLog.cs",
+              "RelativeToolTip": "AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\Models\\RepairLog.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T16:51:02.823Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Car.cs",
+              "DocumentMoniker": "C:\\Users\\bakhaalle\\Desktop\\AutoRepairManager\\AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\Models\\Car.cs",
+              "RelativeDocumentMoniker": "AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\Models\\Car.cs",
+              "ToolTip": "C:\\Users\\bakhaalle\\Desktop\\AutoRepairManager\\AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\Models\\Car.cs",
+              "RelativeToolTip": "AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\Models\\Car.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T16:51:01.183Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CarDTO.cs",
+              "DocumentMoniker": "C:\\Users\\bakhaalle\\Desktop\\AutoRepairManager\\AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\DTO\\CarDTO.cs",
+              "RelativeDocumentMoniker": "AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\DTO\\CarDTO.cs",
+              "ToolTip": "C:\\Users\\bakhaalle\\Desktop\\AutoRepairManager\\AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\DTO\\CarDTO.cs",
+              "RelativeToolTip": "AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\DTO\\CarDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T16:46:03.713Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "LogInDTO.cs",
+              "DocumentMoniker": "C:\\Users\\bakhaalle\\Desktop\\AutoRepairManager\\AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\DTO\\LogInDTO.cs",
+              "RelativeDocumentMoniker": "AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\DTO\\LogInDTO.cs",
+              "ToolTip": "C:\\Users\\bakhaalle\\Desktop\\AutoRepairManager\\AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\DTO\\LogInDTO.cs",
+              "RelativeToolTip": "AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\DTO\\LogInDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T16:46:05.847Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AutoRepair.cs",
+              "DocumentMoniker": "C:\\Users\\bakhaalle\\Desktop\\AutoRepairManager\\AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\Models\\AutoRepair.cs",
+              "RelativeDocumentMoniker": "AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\Models\\AutoRepair.cs",
+              "ToolTip": "C:\\Users\\bakhaalle\\Desktop\\AutoRepairManager\\AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\Models\\AutoRepair.cs",
+              "RelativeToolTip": "AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\Models\\AutoRepair.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAABeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T16:45:10.058Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "RegistrationDTO.cs",
+              "DocumentMoniker": "C:\\Users\\bakhaalle\\Desktop\\AutoRepairManager\\AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\DTO\\RegistrationDTO.cs",
+              "RelativeDocumentMoniker": "AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\DTO\\RegistrationDTO.cs",
+              "ToolTip": "C:\\Users\\bakhaalle\\Desktop\\AutoRepairManager\\AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\DTO\\RegistrationDTO.cs",
+              "RelativeToolTip": "AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\DTO\\RegistrationDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T16:40:48.352Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\bakhaalle\\Desktop\\AutoRepairManager\\AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\Models\\User.cs",
+              "RelativeDocumentMoniker": "AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\Models\\User.cs",
+              "ToolTip": "C:\\Users\\bakhaalle\\Desktop\\AutoRepairManager\\AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\Models\\User.cs",
+              "RelativeToolTip": "AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\Models\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T16:35:56.389Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
