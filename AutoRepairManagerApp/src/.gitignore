@@ -1,0 +1,9 @@
+# Ignore build artifacts
+**/obj/
+**/bin/
+
+# Ignore user-specific files
+*.user
+*.suo
+
+# Ignore any other unwanted files or folders
