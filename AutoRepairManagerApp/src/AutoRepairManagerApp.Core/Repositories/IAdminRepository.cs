@@ -6,6 +6,6 @@ public interface IAdminRepository : IDeleteAsync<User>, IDeleteAsync<RepairLog>,
     
     
     Task<IEnumerable<RepairOrder>?> GetAllUserOrdersAsync();
-    Task AcceptUserRequest(Guid requestId);
-    Task RejectUserRequest(Guid requestId);
+    //Task AcceptUserRequest(Guid requestId);
+    //Task RejectUserRequest(Guid requestId);
 }
