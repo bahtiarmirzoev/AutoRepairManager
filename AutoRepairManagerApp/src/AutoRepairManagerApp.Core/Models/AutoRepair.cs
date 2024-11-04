@@ -6,7 +6,7 @@ namespace AutoRepairManagerApp.Core.Models;
 public class AutoRepair 
 {
     [Key]
-    public Guid Id { get; set; }
+    public Guid Id { get; set; } = Guid.NewGuid();
     [Required]
     [StringLength(100)]
     public string? Name { get; set; }
@@ -16,7 +16,7 @@ public class AutoRepair
     [StringLength(100)]
     public string? Adress { get; set; }
     [Required]
-    public List<ServiceTypeEnum>? ServiceTypeEnums {get;set;}
+    public IEnumerable<ServiceTypeEnum>? ServiceTypeEnums {get;set;}
     [Required]
     public Dictionary<string, (TimeSpan OpeningTime, TimeSpan ClosingTime)>? WorkingHours { get; set; }
     [Required]

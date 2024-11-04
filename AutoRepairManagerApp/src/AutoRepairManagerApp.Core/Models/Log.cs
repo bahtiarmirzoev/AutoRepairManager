@@ -1,13 +1,13 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace ToshokanApp.Core.Models;
+namespace AutoRepairManagerApp.Core.Models;
 
 #pragma warning disable CS8618
 
 public class Log
 {
     [Key]
-    public Guid Id { get; set; }
+    public Guid Id { get; set; } = Guid.NewGuid();
     [Required]
     public string Url { get; set; }
     [Required]
