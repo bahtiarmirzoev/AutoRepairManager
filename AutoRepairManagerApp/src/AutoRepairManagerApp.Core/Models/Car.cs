@@ -7,8 +7,6 @@ public class Car
     [Key]
     public Guid Id { get; set; } = Guid.NewGuid();
     [Required]
-    public Guid UserId { get; set; }
-    [Required]
     public string? Make { get; set; }
     [Required]
     public string? Model { get; set; }

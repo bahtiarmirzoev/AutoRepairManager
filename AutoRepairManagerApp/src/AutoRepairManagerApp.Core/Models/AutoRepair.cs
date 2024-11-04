@@ -18,7 +18,7 @@ public class AutoRepair
     [Required]
     public IEnumerable<ServiceTypeEnum>? ServiceTypeEnums {get;set;}
     [Required]
-    public Dictionary<string, (TimeSpan OpeningTime, TimeSpan ClosingTime)>? WorkingHours { get; set; }
+    public Dictionary<DayEnum, (TimeSpan OpeningTime, TimeSpan ClosingTime)>? WorkingHours { get; set; }
     [Required]
     [Phone]
     [StringLength(15, MinimumLength = 7, ErrorMessage = "Phone number must be between 7 and 15 characters.")]

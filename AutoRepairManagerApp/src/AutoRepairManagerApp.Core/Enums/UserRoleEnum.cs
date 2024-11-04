@@ -1,6 +1,6 @@
 namespace AutoRepairManagerApp.Core.Enums;
 
-public enum UserRole
+public enum UserRoleEnum
 {
     Admin,
     Moderator,
