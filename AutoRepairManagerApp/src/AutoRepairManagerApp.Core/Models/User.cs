@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace ToshokanApp.Core.Models;
+namespace AutoRepairManagerApp.Core.Models;
 
 public class User
 {

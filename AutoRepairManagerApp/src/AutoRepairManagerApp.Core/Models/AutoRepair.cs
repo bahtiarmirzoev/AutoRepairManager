@@ -22,6 +22,6 @@ public class AutoRepair
     [Required]
     [Phone]
     [StringLength(15, MinimumLength = 7, ErrorMessage = "Phone number must be between 7 and 15 characters.")]
-    [RegularExpression(@"^\+?[1-9]\d{1,14}$", ErrorMessage = "Invalid phone number format.")]
+    [RegularExpression(@"^\+?[1-9]\d{1,14}$", ErrorMessage = "Invalid phone number format.")] 
     public string? PhoneNumber { get; set; }
 }
