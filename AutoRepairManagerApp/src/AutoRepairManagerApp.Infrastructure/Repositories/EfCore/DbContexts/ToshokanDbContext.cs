@@ -123,7 +123,7 @@ public class AutoRepairDbContext : DbContext
             .HasMaxLength(100);
 
         modelBuilder.Entity<Car>()
-            .Property(c => c.PlateNumber)
+            .Property(c => c.CarPlate)
             .IsRequired() 
             .HasMaxLength(7)
             .HasConversion( v => v, v => v);
