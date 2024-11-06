@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using AutoRepairManagerApp.Core.Services;
 using AutoRepairManagerApp.Core.Repositories;
 
+namespace AutoRepairManagerApp.Infrastructure.Services;
 public class EmailService : IEmailService
 {
     private readonly IEmailRepository emailRepository;

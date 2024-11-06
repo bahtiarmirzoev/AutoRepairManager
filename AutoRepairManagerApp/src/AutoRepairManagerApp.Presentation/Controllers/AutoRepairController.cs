@@ -7,13 +7,13 @@ using AutoRepairManagerApp.Core.Services;
 
 namespace AutoRepairManagerApp.Presentation.Controllers;
 
-public class BookController : Controller
+public class AutoRepairController : Controller
 {
 
     private readonly IConfiguration autoRepairDirConfiguration;
     private readonly IAutoRepairService autoRepairService;
     private readonly IIdentityService identityService;
-    public BookController(IAutoRepairService autoRepairService, IIdentityService identityService, IConfiguration autoRepairDirConfiguration)
+    public AutoRepairController(IAutoRepairService autoRepairService, IIdentityService identityService, IConfiguration autoRepairDirConfiguration)
     {
         this.autoRepairService = autoRepairService;
         this.identityService = identityService;
@@ -24,9 +24,9 @@ public class BookController : Controller
     [AllowAnonymous]
     public async Task<IActionResult> Index()
     {
-        base.HttpContext.Response.Cookies.Delete("CurrentAutoRepairId");
-        var books = await this.autoRepairService.GetAllAsync();
-        return View(books);
+        //base.HttpContext.Response.Cookies.Delete("CurrentAutoRepairId");
+        var autoRepairs = await this.autoRepairService.GetAllAsync();
+        return View(autoRepairs);
     }
 
     [HttpGet]
