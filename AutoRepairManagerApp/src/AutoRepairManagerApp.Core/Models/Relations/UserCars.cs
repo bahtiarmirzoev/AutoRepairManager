@@ -6,5 +6,5 @@ public class UserCars{
     [Key]
     public Guid UserId { get; set; }
     [Required]
-    public IEnumerable<Guid>? CarId { get; set; }
+    public IEnumerable<Guid>? CarsId { get; set; }
 }
