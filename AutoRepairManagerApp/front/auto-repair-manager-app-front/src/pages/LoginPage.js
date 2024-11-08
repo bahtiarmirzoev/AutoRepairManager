@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import { FaUser, FaEnvelope, FaLock, FaCar } from "react-icons/fa";
+import { FaEnvelope, FaLock, FaCar } from "react-icons/fa";
 
-function RegistrationPage() {
+function LoginPage() {
   const [formData, setFormData] = useState({
-    username: "",
     email: "",
     password: "",
-    confirmPassword: "",
   });
 
   const handleChange = (e) => {
@@ -18,7 +16,7 @@ function RegistrationPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Form submission logic here
+    // Логика отправки формы
   };
 
   return (
@@ -30,37 +28,16 @@ function RegistrationPage() {
       ></div>
       <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-800 to-gray-900 opacity-80"></div>
 
-      {/* Registration Form */}
+      {/* Login Form */}
       <div className="relative z-10 bg-gray-800 bg-opacity-90 p-8 rounded-lg shadow-xl w-full max-w-md">
         <h2 className="text-3xl font-bold text-center text-yellow-500 flex items-center justify-center mb-6">
-          <FaCar className="mr-2" /> Регистрация
+          <FaCar className="mr-2" /> Вход
         </h2>
         <p className="text-center text-gray-400 mb-4">
-          Присоединяйтесь к нашему автосервису и получайте быстрый доступ к
-          услугам
+          Войдите в систему для доступа к услугам автосервиса
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Username Field */}
-          <div className="relative">
-            <label htmlFor="username" className="text-gray-300">
-              Имя пользователя
-            </label>
-            <div className="flex items-center border border-gray-600 rounded-md bg-gray-700">
-              <FaUser className="text-gray-400 mx-3" />
-              <input
-                type="text"
-                id="username"
-                name="username"
-                value={formData.username}
-                onChange={handleChange}
-                className="w-full px-4 py-2 bg-transparent text-gray-300 focus:outline-none"
-                placeholder="Введите имя пользователя"
-                required
-              />
-            </div>
-          </div>
-
           {/* Email Field */}
           <div className="relative">
             <label htmlFor="email" className="text-gray-300">
@@ -101,38 +78,18 @@ function RegistrationPage() {
             </div>
           </div>
 
-          {/* Confirm Password Field */}
-          <div className="relative">
-            <label htmlFor="confirmPassword" className="text-gray-300">
-              Подтвердите пароль
-            </label>
-            <div className="flex items-center border border-gray-600 rounded-md bg-gray-700">
-              <FaLock className="text-gray-400 mx-3" />
-              <input
-                type="password"
-                id="confirmPassword"
-                name="confirmPassword"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                className="w-full px-4 py-2 bg-transparent text-gray-300 focus:outline-none"
-                placeholder="Подтвердите пароль"
-                required
-              />
-            </div>
-          </div>
-
           <button
             type="submit"
             className="w-full py-2 mt-4 bg-yellow-500 text-gray-900 rounded-md font-semibold hover:bg-yellow-600 transition duration-200"
           >
-            Зарегистрироваться
+            Войти
           </button>
         </form>
 
         <p className="text-center text-gray-500 mt-4">
-          Уже зарегистрированы?{" "}
-          <a href="/login" className="text-yellow-500 hover:underline">
-            Войдите
+          Ещё не зарегистрированы?{" "}
+          <a href="/register" className="text-yellow-500 hover:underline">
+            Зарегистрироваться
           </a>
         </p>
       </div>
@@ -140,4 +97,4 @@ function RegistrationPage() {
   );
 }
 
-export default RegistrationPage;
+export default LoginPage;
