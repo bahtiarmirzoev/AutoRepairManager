@@ -19,6 +19,7 @@ builder.Services.AddDbContext<AutoRepairDbContext>(dbContextOptionsBuilder =>
 });
 
 
+
 builder.Services.AddTransient<IEmailRepository, EmailEfCoreRepository>();
 builder.Services.AddTransient<IEmailService, EmailService>();
 

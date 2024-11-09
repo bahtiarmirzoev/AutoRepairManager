@@ -1,4 +1,3 @@
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using AutoRepairManagerApp.Core.Models;
@@ -8,6 +7,7 @@ using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using AutoRepairManagerApp.Core.Enums;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AutoRepairManagerApp.Infrastructure.Repositories.EfCore.DbContexts;
 
@@ -92,9 +92,13 @@ public class AutoRepairDbContext : DbContext
             .Property(ar => ar.ServiceTypeEnums)
             .IsRequired();
 
+    
         modelBuilder.Entity<AutoRepair>()
-            .Property(ar => ar.WorkingHours)
-            .IsRequired();
+            .Property(e => e.WorkingHours)
+            .HasConversion(
+                v => JsonSerializer.Serialize(v, (JsonSerializerOptions)null),
+                v => JsonSerializer.Deserialize<Dictionary<DayEnum, (TimeSpan, TimeSpan)>>(v, (JsonSerializerOptions)null)
+            );
 
         modelBuilder.Entity<AutoRepair>()
             .Property(ar => ar.PhoneNumber)
@@ -127,11 +131,6 @@ public class AutoRepairDbContext : DbContext
             .IsRequired() 
             .HasMaxLength(7)
             .HasConversion( v => v, v => v);
-              
-        modelBuilder.Entity<Car>()
-            .Property(c => c.RepairHistory)
-            .IsRequired()
-            .HasMaxLength(500);
 
         modelBuilder.Entity<Car>()
             .HasMany(c => c.RepairHistory)

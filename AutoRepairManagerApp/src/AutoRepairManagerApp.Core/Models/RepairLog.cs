@@ -12,5 +12,5 @@ public class RepairLog
     [Required]
     public string? Description { get; set; }
     [Required]
-    public float Cost { get; set; }
+    public decimal Cost { get; set; }
 }
