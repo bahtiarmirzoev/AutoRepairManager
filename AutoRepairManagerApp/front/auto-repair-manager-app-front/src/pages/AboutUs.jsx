@@ -3,7 +3,6 @@ import React from "react";
 const AboutUs = () => {
   return (
     <div className="p-10 bg-gradient-to-b from-gray-200 via-gray-100 to-white text-gray-800">
-      {/* Секция "О компании" */}
       <section className="mb-16 text-center">
         <h1 className="text-5xl font-bold mb-6 text-gray-900 tracking-wide">
           О нас
@@ -16,7 +15,6 @@ const AboutUs = () => {
         </p>
       </section>
 
-      {/* Карта Google с декоративной тенью и эффектом параллакса */}
       <section className="relative mb-16">
         <h2 className="text-4xl font-semibold mb-8 text-center text-gray-900">
           Наше местоположение
