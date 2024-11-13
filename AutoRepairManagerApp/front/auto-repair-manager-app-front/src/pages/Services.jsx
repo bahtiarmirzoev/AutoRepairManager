@@ -49,7 +49,7 @@ const servicesData = [
 
 const Services = () => {
   return (
-    <div className="p-10 bg-gradient-to-b from-gray-200 via-gray-100 to-white text-gray-800">
+    <div className="p-20 bg-gradient-to-b from-gray-200 via-gray-100 to-white text-gray-800">
       {/* Заголовок страницы */}
       <section className="mb-16 text-center">
         <h1 className="text-5xl font-bold mb-6 text-gray-900 tracking-wide">

@@ -12,23 +12,6 @@ import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <div className="bg-gray-100 text-gray-800">
-      {/* Hero Section with Animated Text */}
-      <section className="relative bg-cover bg-center h-screen flex items-center justify-center text-center text-white bg-[url('https://your-hero-image-url.com')]">
-        <div className="absolute inset-0 bg-black bg-opacity-60"></div>
-        <div className="relative z-10 p-6">
-          <h1 className="text-6xl font-bold mb-6 animate-fadeInUp">
-            Ваш надежный автосервис
-          </h1>
-          <p className="text-lg max-w-2xl mx-auto mb-8 animate-fadeIn delay-1s">
-            Профессиональное обслуживание автомобилей. Гарантия качества и
-            безопасность на дороге.
-          </p>
-          <button className="bg-blue-600 hover:bg-blue-700 px-8 py-3 text-lg font-semibold rounded-lg animate-fadeInUp delay-2s">
-            Записаться на сервис
-          </button>
-        </div>
-      </section>
-
       {/* Services Section with Interactive Cards */}
       <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto text-center mb-12">
@@ -64,7 +47,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Testimonials Slider */}
       <section className="py-16 bg-gray-100">
         <div className="max-w-6xl mx-auto text-center mb-12">
           <h2 className="text-4xl font-bold text-gray-900">
@@ -74,11 +56,13 @@ const Home = () => {
             Наши клиенты довольны качеством обслуживания и результатом.
           </p>
         </div>
+
         <div className="flex overflow-x-auto space-x-6 px-8 snap-x snap-mandatory">
           {[
             "Отличный сервис!",
             "Профессиональный подход",
             "Быстро и качественно",
+            "Metreynen ish goreller? PAPUTU ",
           ].map((review, index) => (
             <div
               key={index}
