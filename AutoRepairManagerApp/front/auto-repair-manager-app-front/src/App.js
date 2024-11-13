@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import RegistrationPage from "./pages/RegistrationPage";
 import LoginPage from "./pages/LoginPage";
 import AboutUs from "./pages/AboutUs";
@@ -19,13 +20,16 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/registration" element={<RegistrationPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/RegistrationPage" element={<RegistrationPage />} />
+            <Route path="/LoginPage" element={<LoginPage />} />
+            <Route path="/aboutus" element={<AboutUs />} />
             <Route path="/services" element={<Services />} />
             <Route path="/contact" element={<Contacts />} />
           </Routes>
         </main>
+        <footer>
+          <Footer />
+        </footer>
       </div>
     </Router>
   );
