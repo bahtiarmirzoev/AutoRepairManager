@@ -7,143 +7,94 @@ using AutoRepairManagerApp.Core.Services;
 
 namespace AutoRepairManagerApp.Presentation.Controllers;
 
-public class AutoRepairController : Controller
+[ApiController]
+[Route("api/[controller]")]
+public class AutoRepairController : ControllerBase
 {
-
     private readonly IConfiguration autoRepairDirConfiguration;
     private readonly IAutoRepairService autoRepairService;
     private readonly IIdentityService identityService;
-    public AutoRepairController(IAutoRepairService autoRepairService, IIdentityService identityService, IConfiguration autoRepairDirConfiguration)
+
+    public AutoRepairController(
+        IAutoRepairService autoRepairService, 
+        IIdentityService identityService, 
+        IConfiguration autoRepairDirConfiguration)
     {
         this.autoRepairService = autoRepairService;
         this.identityService = identityService;
         this.autoRepairDirConfiguration = autoRepairDirConfiguration;
     }
 
-    [HttpGet]
+    [HttpGet("GetAll")]
     [AllowAnonymous]
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> GetAll()
     {
-        //base.HttpContext.Response.Cookies.Delete("CurrentAutoRepairId");
         var autoRepairs = await this.autoRepairService.GetAllAsync();
-        return View(autoRepairs);
+        return Ok(autoRepairs); // Returns JSON of all auto repairs
     }
 
-    [HttpGet]
-    [ActionName("GetByName")]
+    [HttpGet("GetByName")]
     [AllowAnonymous]
-    public async Task<IActionResult> GetByName(string? name)
+    public async Task<IActionResult> GetByName([FromQuery] string? name)
     {
-        var booksByName = await this.autoRepairService.GetByNameAsync(name);
-        return View("Index", booksByName);
+        var servicesByName = await this.autoRepairService.GetByNameAsync(name);
+        return Ok(servicesByName); // Returns JSON filtered by name
     }
 
-    [HttpGet]
-    [ActionName("GetById")]
+    [HttpGet("GetById/{id}")]
     [AllowAnonymous]
     public async Task<IActionResult> GetById(Guid id)
     {
         var autoRepairById = await this.autoRepairService.GetByIdAsync(id);
-        // var commentDtos = this.autoRepairService.GetComments(bookById.Id);
 
-        // var bookComments = new BookComment
-        // {
-        //     book = bookById,
-        //     comments = commentDtos
-        // };
+        if (autoRepairById == null)
+            return NotFound();
 
-        Guid userId;
-        var hashedSenderId = base.HttpContext.Request.Cookies["CurrentUserId"];
-
-        if (string.IsNullOrWhiteSpace(hashedSenderId) == false)
+        var hashedSenderId = HttpContext.Request.Cookies["CurrentUserId"];
+        if (!string.IsNullOrWhiteSpace(hashedSenderId))
         {
-            Guid.TryParse(hashedSenderId, out userId);
-            var user = await identityService.GetByIdAsync(userId);
-        }       
-        else{
-            ViewBag.InPurchased = false;
-            ViewBag.InWishlist = false;
+            if (Guid.TryParse(hashedSenderId, out Guid userId))
+            {
+                var user = await identityService.GetByIdAsync(userId);
+            }
         }
 
-        base.HttpContext.Response.Cookies.Append("CurrentAutoRepairId", autoRepairById.Id.ToString());
-        ViewBag.avatarDirPath = autoRepairDirConfiguration["StaticFileRoutes:Avatars"];
-        return View("Description");
+        return Ok(autoRepairById); // Returns JSON with auto repair details and user information
     }
 
-    [HttpPost]
-    [ActionName("Add")]
-    [Route("api/[controller]/[action]/")]
+    [HttpPost("Add")]
     [Authorize("RequireAdminAccess")]
-    public async Task<IActionResult> Add([FromForm] AutoRepair newAutoRepair, IFormFile layout, IFormFile bookFile)
+    public async Task<IActionResult> Add([FromForm] AutoRepair newAutoRepair, IFormFile layout)
     {
         try
         {
-            newAutoRepair.Id = new Guid();
-            // newAutoRepair.AddedDate = DateTime.Now;
-
-
+            newAutoRepair.Id = Guid.NewGuid();
             await this.autoRepairService.AddAsync(newAutoRepair);
-            if (bookFile != null)
-            {
-                var extension = Path.GetExtension(bookFile.FileName);
-                using var newFileStream = System.IO.File.Create($"{autoRepairDirConfiguration["StaticFileRoutes:AutoRepairs"]}{newAutoRepair.Id}{extension}");
-                await bookFile.CopyToAsync(newFileStream);
-            }
+
             var layoutFilePath = $"{autoRepairDirConfiguration["StaticFileRoutes:Layouts"]}{newAutoRepair.Id}";
-
-            if (layout == null)
-            {
-                var defaultLayoutUrl = "https://static.vecteezy.com/system/resources/previews/000/357/095/non_2x/vector-book-icon.jpg";
-
-                var uri = new Uri(defaultLayoutUrl);
-                var extension = Path.GetExtension(uri.AbsolutePath);
-
-                using var httpClient = new HttpClient();
-                HttpResponseMessage response = null;
-
-                try
-                {
-                    response = await httpClient.GetAsync(defaultLayoutUrl);
-                    response.EnsureSuccessStatusCode();
-                }
-                catch (HttpRequestException e)
-                {
-                    throw new Exception("Error fetching default layout from the internet: " + e.Message);
-                }
-
-                using var newFileStream = System.IO.File.Create(layoutFilePath + extension);
-                await response.Content.CopyToAsync(newFileStream);
-            }
-            else
+            if (layout != null)
             {
                 var extension = Path.GetExtension(layout.FileName);
-
                 using var newFileStream = System.IO.File.Create(layoutFilePath + extension);
                 await layout.CopyToAsync(newFileStream);
             }
+
+            return CreatedAtAction(nameof(GetById), new { id = newAutoRepair.Id }, newAutoRepair); // Returns 201 Created
         }
         catch (Exception ex)
         {
-            TempData["error"] = ex.Message;
+            return BadRequest(new { message = ex.Message });
         }
-
-        return base.RedirectToAction("Index");
     }
 
-
-
-    
-    [HttpGet]
-    [ActionName("DeleteAutoRepair")]
+    [HttpDelete("Delete/{id}")]
     [Authorize("RequireAdminAccess")]
     public async Task<IActionResult> Delete(Guid id)
     {
-        if (ModelState.IsValid)
-        {
-            await this.autoRepairService.DeleteAsync(id);
-            return base.RedirectToAction("Index");
-        }
+        if (!ModelState.IsValid)
+            return BadRequest();
 
-        return Forbid();
+        await this.autoRepairService.DeleteAsync(id);
+        return NoContent(); 
     }
 }

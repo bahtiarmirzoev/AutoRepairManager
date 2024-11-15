@@ -9,60 +9,54 @@ using Microsoft.AspNetCore.Authorization;
 using AutoRepairManagerApp.Presentation.Models;
 using AutoRepairManagerApp.Core.Enums;
 
-namespace AutoRepairManagerApp.Infrastructure.Controllers;
-
+namespace AutoRepairManagerApp.Presentation.Controllers;
 
 [Authorize(Roles = "Admin")]
-
-public class AdminController : Controller
+[Route("api/[controller]")]
+[ApiController] 
+public class AdminController : ControllerBase
 {
-
     private readonly IAutoRepairService autoRepairService;
     private readonly IIdentityService identityService;
     private readonly IAdminService adminService;
-    public AdminController(IConfiguration configuration, IAutoRepairService autoRepairService, IIdentityService identityService, IAdminService adminService)
+
+    public AdminController(IAutoRepairService autoRepairService, IIdentityService identityService, IAdminService adminService)
     {
         this.autoRepairService = autoRepairService;
         this.identityService = identityService;
         this.adminService = adminService;
     }
 
+    [HttpGet("Dashboard")]
     public async Task<IActionResult> Index()
     {
-        return View();
+        return Ok("Admin dashboard placeholder");
     }
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
-
+    [HttpGet("Users")]
     public async Task<IActionResult> GetUsers()
     {
         var users = await this.identityService.GetAllAsync();
-        return base.View(users);
+        return Ok(users); 
     }
 
-
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
+    [HttpGet("RepairOrders")]
+    public async Task<IActionResult> GetRepairOrders()
     {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        var repairOrders = await this.adminService.GetAllRepairOrdersAsync();
+        return Ok(repairOrders); 
     }
 
-    [HttpGet]
-    [ActionName("DeleteUser")]
+    [HttpDelete("Users/{id}")]
     public async Task<IActionResult> DeleteUser(Guid id)
     {
         await this.identityService.DeleteAsync(id);
-        return base.RedirectToAction("GetUsers");
+        return NoContent();
     }
 
-
-    [HttpGet]
-    [ActionName("GetRepairOrders")]
-    public async Task<IActionResult> GetRepairOrders()
+    [NonAction] 
+    public IActionResult Error()
     {
-        return base.View(await this.adminService.GetAllRepairOrdersAsync());
+        return Problem("An error occurred in the AdminController.");
     }
 }

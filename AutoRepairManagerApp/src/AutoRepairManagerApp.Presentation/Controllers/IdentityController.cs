@@ -14,7 +14,10 @@ using AutoRepairManagerApp.Infrastructure.Services;
 using System.Net.Mail;
 using System.Net;
 
-namespace AutoRepairManagerApp.Infrastructure.Controllers;
+namespace AutoRepairManagerApp.Presentation.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
 public class IdentityController : Controller
 {
     private readonly IIdentityService identityService;
@@ -25,236 +28,142 @@ public class IdentityController : Controller
     private readonly IConfiguration avatarDirConfiguration;
 
     private readonly IDataProtector dataProtector;
-    public IdentityController(IIdentityService identityService, IDataProtectionProvider dataProtectionProvider, IConfiguration avatarDirConfiguration, IAutoRepairService bookService, IEmailService emailService)
+    public IdentityController(IIdentityService identityService, IDataProtectionProvider dataProtectionProvider, IConfiguration avatarDirConfiguration, IAutoRepairService autoRepairService, IEmailService emailService)
     {
         this.identityService = identityService;
         this.dataProtector = dataProtectionProvider.CreateProtector("identity");
         this.avatarDirConfiguration = avatarDirConfiguration;
-        this.autoRepairService = bookService;
+        this.autoRepairService = autoRepairService;
         this.emailService = emailService;
     }
 
-    [Route("/[controller]/[action]", Name = "LoginView")]
+    [HttpPost("Login")]
     [AllowAnonymous]
-    public IActionResult Login(string? ReturnUrl)
-    {
-        var errorMessage = base.TempData["error"];
-        ViewBag.ReturnUrl = ReturnUrl;
-        if (errorMessage != null)
-        {
-            base.ModelState.AddModelError("All", errorMessage.ToString()!);
-        }
-
-        return base.View();
-    }
-
-    [HttpPost]
-    [AllowAnonymous]
-    [Route("/api/[controller]/[action]", Name = "LoginEndpoint")]
-    public async Task<IActionResult> Login([FromForm] LogInDTO loginDto)
+    public async Task<IActionResult> Login([FromBody] LogInDTO loginDto)
     {
         loginDto.Password = Convert.ToBase64String(Encoding.UTF8.GetBytes(loginDto.Password));
-        var foundUser = await this.identityService.Login(loginDto);
-        if (foundUser == null)
-        {
-            base.TempData["error"] = "Incorrect login or password!";
-            return base.RedirectToRoute("LoginView", new
-            {
-                loginDto.ReturnUrl
-            });
-        }
-        var hashedUserId = this.dataProtector.Protect(foundUser.Id.ToString());
+        var user = await identityService.Login(loginDto);
 
-        var claims = new Claim[] {
-                new(ClaimTypes.Email, foundUser.Email),
-                new(ClaimTypes.Name, foundUser.Name),
-                new("Id", hashedUserId),
-                //new(ClaimTypes.Role, await this.identityService.GetRole(foundUser.Id)),
-            };
+        if (user == null)
+        {
+            return Unauthorized(new { message = "Incorrect login or password!" });
+        }
+
+        var hashedUserId = dataProtector.Protect(user.Id.ToString());
+        var claims = new[]
+        {
+            new Claim(ClaimTypes.Email, user.Email),
+            new Claim(ClaimTypes.Name, user.Name),
+            new Claim("Id", hashedUserId)
+        };
 
         var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
         var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
 
-        await base.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
+        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
 
-        if (string.IsNullOrWhiteSpace(loginDto.ReturnUrl) == false)
-        {
-            return base.Redirect(loginDto.ReturnUrl);
-        }
-
-        base.HttpContext.Response.Cookies.Append("CurrentUserId", foundUser.Id.ToString());
-        return base.RedirectToAction(controllerName: "Book", actionName: "Index");
+        HttpContext.Response.Cookies.Append("CurrentUserId", user.Id.ToString());
+        
+        return Ok(new { message = "Login successful", user });
     }
 
-    [HttpGet]
-    [Authorize()]
-    [Route("/api/[controller]/[action]", Name = "LogoutEndpoint")]
-    public async Task<IActionResult> Logout(string? ReturnUrl)
+    [HttpPost("Logout")]
+    [Authorize]
+    public async Task<IActionResult> Logout()
     {
+        HttpContext.Response.Cookies.Delete("CurrentUserId");
+        await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
-        base.HttpContext.Response.Cookies.Delete("CurrentUserId");
-        await base.HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-        return base.RedirectToRoute("LoginView", new
-        {
-            ReturnUrl
-        });
-
+        return Ok(new { message = "Logged out successfully" });
     }
 
-    [Route("/[controller]/[action]", Name = "RegistrationView")]
+    [HttpPost("register")]
     [AllowAnonymous]
-    public IActionResult Registration()
-    {
-        if (TempData["error"] != null)
-        {
-            ModelState.AddModelError("All", TempData["error"].ToString());
-            System.Console.WriteLine(TempData["error"]);
-        }
-
-        return base.View();
-    }
-
-    [HttpPost]
-    [AllowAnonymous]
-    [Route("/api/[controller]/[action]", Name = "RegistrationEndpoint")]
-    public async Task<IActionResult> Registration([FromForm] RegistrationDTO registrationDto, IFormFile avatar)
+    public async Task<IActionResult> Register([FromForm] RegistrationDTO registrationDto, IFormFile? avatar)
     {
         try
         {
             registrationDto.Password = Convert.ToBase64String(Encoding.UTF8.GetBytes(registrationDto.Password));
-            var userId = await this.identityService.Registration(registrationDto);
-            if (userId == null) throw new Exception("This email is already being used by another user");
+            var userId = await identityService.Registration(registrationDto);
+            if (userId == null)
+                return Conflict(new { message = "This email is already in use" });
 
             var avatarFilePath = $"{avatarDirConfiguration["StaticFileRoutes:Avatars"]}{userId}";
+            var extension = avatar != null ? Path.GetExtension(avatar.FileName) : ".jpg";
 
-            if (avatar == null)
+            using var newFileStream = System.IO.File.Create(avatarFilePath + extension);
+            if (avatar != null)
             {
-                var defaultAvatarUrl = "https://wallpapers.com/images/hd/blank-default-pfp-wue0zko1dfxs9z2c.jpg";
-
-                var uri = new Uri(defaultAvatarUrl);
-                var extension = Path.GetExtension(uri.AbsolutePath);
-
-                using var httpClient = new HttpClient();
-                HttpResponseMessage response = null;
-
-                try
-                {
-                    response = await httpClient.GetAsync(defaultAvatarUrl);
-                    response.EnsureSuccessStatusCode();
-                }
-                catch (HttpRequestException e)
-                {
-                    throw new Exception("Error fetching default avatar from the internet: " + e.Message);
-                }
-
-                using var newFileStream = System.IO.File.Create(avatarFilePath + extension);
-                await response.Content.CopyToAsync(newFileStream);
+                await avatar.CopyToAsync(newFileStream);
             }
             else
             {
-                var extension = Path.GetExtension(avatar.FileName);
-
-                using var newFileStream = System.IO.File.Create(avatarFilePath + extension);
-                await avatar.CopyToAsync(newFileStream);
+                using var httpClient = new HttpClient();
+                var response = await httpClient.GetAsync("https://wallpapers.com/images/hd/blank-default-pfp-wue0zko1dfxs9z2c.jpg");
+                await response.Content.CopyToAsync(newFileStream);
             }
+
+            return Ok(new { message = "Registration successful" });
         }
         catch (Exception ex)
         {
-            TempData["error"] = ex.Message;
-            return base.RedirectToRoute("RegistrationView");
+            return BadRequest(new { message = ex.Message });
         }
-
-        return base.RedirectToRoute("LoginView");
     }
 
-
-    [HttpGet]
-    [AllowAnonymous]
-    [Route("[controller]/[action]/{id}")]
-    [ActionName("GetById")]
-    public async Task<ActionResult> GetById(Guid id)
+    [HttpGet("{id}")]
+    [Authorize]
+    public async Task<IActionResult> GetUserById(Guid id)
     {
         var user = await identityService.GetByIdAsync(id);
-        Guid senderId;
-        var hashedSenderId = base.HttpContext.Request.Cookies["CurrentUserId"];
-
-        if (string.IsNullOrWhiteSpace(hashedSenderId) == false)
+        if (user == null)
         {
-
-            Guid.TryParse(hashedSenderId, out senderId);
-            if (senderId == id)
-            {
-                ViewBag.IsCurrentAccount = true;
-                //ViewBag.HasPendingRequest = await identityService.(id);
-            }
-            else ViewBag.IsCurrentAccount = false;
+            return NotFound(new { message = "User not found" });
         }
-        else
+
+        var currentUserId = HttpContext.Request.Cookies["CurrentUserId"];
+        var isCurrentUser = currentUserId != null && Guid.TryParse(currentUserId, out var userId) && userId == id;
+
+        return Ok(new
         {
-            ViewBag.IsCurrentAccount = false;
-        }
-        ViewBag.avatarDirPath = avatarDirConfiguration["StaticFileRoutes:Avatars"];
-        ViewBag.avatarPath = ViewBag.avatarDirPath + user.Id;
-        ViewBag.UserId = user.Id;
-
-
-        return base.View(user);
+            user,
+            isCurrentUser,
+            avatarPath = $"{avatarDirConfiguration["StaticFileRoutes:Avatars"]}{user.Id}.jpg"
+        });
     }
 
-    [HttpGet]
+    [HttpPost("SendEmail")]
     [Authorize]
-    public async Task<IActionResult> SendEmail(string userEmail, string subject)
+    public async Task<IActionResult> SendEmail([FromQuery] string userEmail, [FromQuery] string subject)
     {
         try
         {
-            verificationCode = emailService.GenerateVerificationCode();
-            string message = $"Your verification code: {verificationCode}";
-            await emailService.SendEmailAsync(userEmail, subject, message);
-            Console.WriteLine("Email sent successfully.");
+            var verificationCode = emailService.GenerateVerificationCode();
+            var message = $"Your verification code: {verificationCode}";
 
-            // Store the verification code in TempData
+            await emailService.SendEmailAsync(userEmail, subject, message);
             TempData["VerificationCode"] = verificationCode;
+
+            return Ok(new { message = "Email sent successfully", verificationCode });
         }
         catch (Exception ex)
         {
-            Console.WriteLine("General error sending email: " + ex.Message);
+            return StatusCode(500, new { message = "Failed to send email", error = ex.Message });
         }
-        return RedirectToRoute("VerifyEmailView");
     }
 
+    [HttpPost("VerifyEmail")]
     [Authorize]
-    [Route("[controller]/[action]/", Name = "VerifyEmailView")]
-    public IActionResult VerifyEmail()
+    public async Task<IActionResult> VerifyEmail([FromBody] string enteredCode)
     {
-        if (TempData["error"] != null)
+        var storedCode = TempData["VerificationCode"] as string;
+        if (string.IsNullOrEmpty(enteredCode) || enteredCode != storedCode)
         {
-            ModelState.AddModelError("All", TempData["error"].ToString());
-            System.Console.WriteLine(TempData["error"]);
+            return BadRequest(new { message = "The entered code is incorrect" });
         }
 
-        // Pass the verification code to the view
-        ViewBag.VerificationCode = TempData["VerificationCode"];
-
-        return View();
+        await emailService.VerifyEmail(new Guid(HttpContext.Request.Cookies["CurrentUserId"]));
+        return Ok(new { message = "Email verified successfully" });
     }
-
-    [HttpPost]
-    [Authorize]
-    [Route("api/[controller]/[action]/", Name = "VerifyEmailEndpoint")]
-    public async Task<IActionResult> VerifyEmail(string enteredCode, string hiddenCode)
-    {
-        if (string.IsNullOrEmpty(enteredCode) || enteredCode != hiddenCode)
-        {
-            TempData["error"] = "The entered code is incorrect.";
-            return RedirectToRoute("VerifyEmailView");
-        }
-
-        System.Console.WriteLine(enteredCode);
-        System.Console.WriteLine(hiddenCode);
-        await this.emailService.VerifyEmail(new Guid(base.HttpContext.Request.Cookies["CurrentUserId"]));
-        return RedirectToAction("Index", "Book");
-    }
-
 }
 

@@ -74,7 +74,6 @@ public class IdentityEfCoreRepository : IIdentityRepository
 
     public Task<string> GenerateEmailConfirmationTokenAsync(User user)
     {
-        // Реализуйте генерацию токена подтверждения
         var token = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
         return Task.FromResult(token);
     }
