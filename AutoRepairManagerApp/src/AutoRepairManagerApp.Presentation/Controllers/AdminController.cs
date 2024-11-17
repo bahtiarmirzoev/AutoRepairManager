@@ -47,10 +47,56 @@ public class AdminController : ControllerBase
         return Ok(repairOrders); 
     }
 
-    [HttpDelete("Users/{id}")]
+    [HttpGet("RepairLogs")]
+    public async Task<IActionResult> GetRepairLogs()
+    {
+        var repairLogs = await this.adminService.GetAllRepairLogsAsync();
+        return Ok(repairLogs); 
+    }
+
+    [HttpPost("MakeNotDone/{id}")]
+    public async Task<IActionResult> MakeRepairOrderNotDoneAsync(Guid id){
+        await this.adminService.MakeRepairOrderNotDoneAsync(id);
+        return Ok();
+    } 
+
+    [HttpPost("MakeDone/{id}")]
+    public async Task<IActionResult> MakeRepairOrderDoneAsync(Guid id){
+        await this.adminService.MakeRepairOrderDoneAsync(id);
+        return Ok();
+    } 
+    
+    [HttpPost("MakeInProcess/{id}")]
+    public async Task<IActionResult> MakeRepairOrderInProcessAsync(Guid id){
+        await this.adminService.MakeRepairOrderInProcessAsync(id);
+        return Ok();
+    } 
+
+    [HttpDelete("DeleteUser/{id}")]
     public async Task<IActionResult> DeleteUser(Guid id)
     {
-        await this.identityService.DeleteAsync(id);
+        await this.adminService.DeleteUser(id);
+        return NoContent();
+    }
+
+    [HttpDelete("DeleteAutoRepair/{id}")]
+    public async Task<IActionResult> DeleteAutoRepair(Guid id)
+    {
+        await this.adminService.DeleteAutoRepair(id);
+        return NoContent();
+    }
+
+    [HttpDelete("DeleteRepairLog/{id}")]
+    public async Task<IActionResult> DeleteRepairLog(Guid id)
+    {
+        await this.adminService.DeleteRepairLog(id);
+        return NoContent();
+    }
+
+    [HttpDelete("DeleteRepairOrder/{id}")]
+    public async Task<IActionResult> DeleteRepairOrder(Guid id)
+    {
+        await this.adminService.DeleteRepairOrder(id);
         return NoContent();
     }
 

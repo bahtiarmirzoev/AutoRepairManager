@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AutoRepairManagerApp.Presentation")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4e38718e31a56d841068e41da9e717371aaac5b5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8bd07e1eb3d9cfa8f689bfa0030bb0ca9803ea86")]
 [assembly: System.Reflection.AssemblyProductAttribute("AutoRepairManagerApp.Presentation")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AutoRepairManagerApp.Presentation")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

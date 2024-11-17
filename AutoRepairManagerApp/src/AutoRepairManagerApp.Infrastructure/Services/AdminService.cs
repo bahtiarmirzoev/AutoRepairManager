@@ -15,9 +15,29 @@ public class AdminService : IAdminService
         this.adminRepository = adminRepository;
     }
 
-    public Task DeleteAutoRepair(Guid id)
+
+    public Task<IEnumerable<User>?> GetAllUsersAsync()
+    {
+        return this.adminRepository.GetAllUsersAsync();
+    }
+
+    public Task<IEnumerable<RepairOrder>?> GetAllRepairOrdersAsync()
+    {
+        return this.adminRepository.GetAllRepairOrdersAsync();
+    }
+
+    public Task<IEnumerable<RepairLog>?> GetAllRepairLogsAsync()
     {
         throw new NotImplementedException();
+    }
+    public async Task MakeRepairOrderNotDoneAsync(Guid id){
+        await this.adminRepository.MakeRepairOrderNotDoneAsync(id);
+    }
+    public async Task MakeRepairOrderInProcessAsync(Guid id){
+        await this.adminRepository.MakeRepairOrderInProcessAsync(id);
+    }
+    public async Task MakeRepairOrderDoneAsync(Guid id){
+        await this.adminRepository.MakeRepairOrderDoneAsync(id);
     }
 
     public Task DeleteUser(Guid id)
@@ -25,17 +45,17 @@ public class AdminService : IAdminService
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<User>?> GetAllUsersAsync()
+    public Task DeleteRepairLog(Guid id)
     {
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<RepairOrder>?> GetAllRepairOrdersAsync()
+    public Task DeleteRepairOrder(Guid id)
     {
         throw new NotImplementedException();
     }
-
-    public Task<IEnumerable<RepairLog>?> GetAllRepairLogsAsync()
+    
+    public Task DeleteAutoRepair(Guid id)
     {
         throw new NotImplementedException();
     }
