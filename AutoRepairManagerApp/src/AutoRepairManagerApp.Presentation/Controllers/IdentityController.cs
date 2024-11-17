@@ -77,9 +77,9 @@ public class IdentityController : Controller
         return Ok(new { message = "Logged out successfully" });
     }
 
-    [HttpPost("register")]
+    [HttpPost("Registration")]
     [AllowAnonymous]
-    public async Task<IActionResult> Register([FromForm] RegistrationDTO registrationDto, IFormFile? avatar)
+    public async Task<IActionResult> Registration([FromForm] RegistrationDTO registrationDto, IFormFile? avatar)
     {
         try
         {
@@ -111,7 +111,7 @@ public class IdentityController : Controller
         }
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("User/{id}")]
     [Authorize]
     public async Task<IActionResult> GetUserById(Guid id)
     {

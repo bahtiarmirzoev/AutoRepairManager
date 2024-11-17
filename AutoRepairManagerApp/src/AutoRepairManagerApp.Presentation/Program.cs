@@ -19,7 +19,38 @@ builder.Services.AddDbContext<AutoRepairDbContext>(dbContextOptionsBuilder =>
 });
 
 
+
+
 builder.Services.AddDataProtection();
+
+
+var assetsDirPath = builder.Configuration["StaticFileRoutes:Assets"];
+var avatarsDirPath = builder.Configuration["StaticFileRoutes:Avatars"];
+
+if (!Directory.Exists(assetsDirPath))
+{
+    try
+    {
+        Directory.CreateDirectory(assetsDirPath);
+        Directory.CreateDirectory($"{assetsDirPath}/Avatars");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error while initializing folder: {ex.Message}");
+    }
+}
+
+if (!Directory.Exists(avatarsDirPath))
+{
+    try
+    {
+        Directory.CreateDirectory(avatarsDirPath);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error while initializing folder: {ex.Message}");
+    }
+}
 
 
 builder.Services.AddTransient<IEmailRepository, EmailEfCoreRepository>();
