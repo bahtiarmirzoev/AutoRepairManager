@@ -16,10 +16,6 @@ public class IdentityService : IIdentityService
         this.connectionString = connectionString;
         this.identityRepository = identityRepository;
     }
-    public async Task DeleteAsync(Guid id)
-    {
-        await this.identityRepository.DeleteAsync(id);
-    }
 
     public async Task<IEnumerable<User>?> GetAllAsync()
     {

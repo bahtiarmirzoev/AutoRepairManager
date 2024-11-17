@@ -16,5 +16,5 @@ public class RepairOrder
     [Required]
     public DateTime OrderDate { get; set; }
     [Required]
-    public ServiceStatusEnum ServiceStatus { get; set; }
+    public ServiceStatusEnum ServiceStatus { get; set; } = ServiceStatusEnum.NotDone;
 }

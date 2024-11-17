@@ -8,7 +8,6 @@ public interface IIdentityService
     Task<User?> Login(LogInDTO loginDto);
     Task<Guid?> Registration(RegistrationDTO registrationDto);
     Task<UserRole> GetRole(Guid userId);
-    Task DeleteAsync(Guid id);
     Task<IEnumerable<User>?> GetAllAsync();
     Task PromoteAdminAsync(Guid id);
     Task SendRepairOrder(RepairOrder repairOrder);

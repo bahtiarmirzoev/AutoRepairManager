@@ -14,6 +14,11 @@ public class AutoRepairEfCoreRepository : IAutoRepairRepository
         this.dbContext = dbContext;
     }
 
+    public AutoRepairEfCoreRepository()
+    {
+        
+    }
+
     public async Task AddAsync(AutoRepair newAutoRepair)
     {
         await dbContext.AutoRepairs.AddAsync(newAutoRepair);
