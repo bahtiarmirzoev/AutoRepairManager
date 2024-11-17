@@ -25,23 +25,23 @@ public class AutoRepairController : ControllerBase
         this.autoRepairDirConfiguration = autoRepairDirConfiguration;
     }
 
-    [HttpGet("GetAll")]
+    [HttpGet("AutoRepairs")]
     [AllowAnonymous]
     public async Task<IActionResult> GetAll()
     {
         var autoRepairs = await this.autoRepairService.GetAllAsync();
-        return Ok(autoRepairs); // Returns JSON of all auto repairs
+        return Ok(autoRepairs);
     }
 
-    [HttpGet("GetByName")]
+    [HttpGet("AutoRepair")]
     [AllowAnonymous]
     public async Task<IActionResult> GetByName([FromQuery] string? name)
     {
         var servicesByName = await this.autoRepairService.GetByNameAsync(name);
-        return Ok(servicesByName); // Returns JSON filtered by name
+        return Ok(servicesByName); 
     }
 
-    [HttpGet("GetById/{id}")]
+    [HttpGet("AutoRepair/{id}")]
     [AllowAnonymous]
     public async Task<IActionResult> GetById(Guid id)
     {
@@ -50,34 +50,26 @@ public class AutoRepairController : ControllerBase
         if (autoRepairById == null)
             return NotFound();
 
-        var hashedSenderId = HttpContext.Request.Cookies["CurrentUserId"];
-        if (!string.IsNullOrWhiteSpace(hashedSenderId))
-        {
-            if (Guid.TryParse(hashedSenderId, out Guid userId))
-            {
-                var user = await identityService.GetByIdAsync(userId);
-            }
-        }
+        return Ok(autoRepairById);
 
-        return Ok(autoRepairById); // Returns JSON with auto repair details and user information
     }
 
     [HttpPost("Add")]
-    [Authorize("RequireAdminAccess")]
-    public async Task<IActionResult> Add([FromForm] AutoRepair newAutoRepair, IFormFile layout)
+    [Authorize("AdminAccess")]
+    public async Task<IActionResult> Add([FromForm] AutoRepair newAutoRepair)//, IFormFile layout)
     {
         try
         {
             newAutoRepair.Id = Guid.NewGuid();
             await this.autoRepairService.AddAsync(newAutoRepair);
 
-            var layoutFilePath = $"{autoRepairDirConfiguration["StaticFileRoutes:Layouts"]}{newAutoRepair.Id}";
-            if (layout != null)
-            {
-                var extension = Path.GetExtension(layout.FileName);
-                using var newFileStream = System.IO.File.Create(layoutFilePath + extension);
-                await layout.CopyToAsync(newFileStream);
-            }
+           // var layoutFilePath = $"{autoRepairDirConfiguration["StaticFileRoutes:Layouts"]}{newAutoRepair.Id}";
+            // if (layout != null)
+            // {
+            //     var extension = Path.GetExtension(layout.FileName);
+            //     using var newFileStream = System.IO.File.Create(layoutFilePath + extension);
+            //     await layout.CopyToAsync(newFileStream);
+            // }
 
             return CreatedAtAction(nameof(GetById), new { id = newAutoRepair.Id }, newAutoRepair); // Returns 201 Created
         }
@@ -88,7 +80,7 @@ public class AutoRepairController : ControllerBase
     }
 
     [HttpDelete("Delete/{id}")]
-    [Authorize("RequireAdminAccess")]
+    [Authorize("AdminAccess")]
     public async Task<IActionResult> Delete(Guid id)
     {
         if (!ModelState.IsValid)
