@@ -20,6 +20,39 @@ builder.Services.AddDbContext<AutoRepairDbContext>(dbContextOptionsBuilder =>
 
 
 
+
+builder.Services.AddDataProtection();
+
+
+var assetsDirPath = builder.Configuration["StaticFileRoutes:Assets"];
+var avatarsDirPath = builder.Configuration["StaticFileRoutes:Avatars"];
+
+if (!Directory.Exists(assetsDirPath))
+{
+    try
+    {
+        Directory.CreateDirectory(assetsDirPath);
+        Directory.CreateDirectory($"{assetsDirPath}/Avatars");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error while initializing folder: {ex.Message}");
+    }
+}
+
+if (!Directory.Exists(avatarsDirPath))
+{
+    try
+    {
+        Directory.CreateDirectory(avatarsDirPath);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error while initializing folder: {ex.Message}");
+    }
+}
+
+
 builder.Services.AddTransient<IEmailRepository, EmailEfCoreRepository>();
 builder.Services.AddTransient<IEmailService, EmailService>();
 
@@ -35,6 +68,23 @@ builder.Services.AddTransient<IIdentityService, IdentityService>();
 builder.Services.AddTransient<ILogRepository, LogEfCoreRepository>();
 builder.Services.AddTransient<ILogService, LogService>();
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminAccess", policyBuilder =>
+    {
+        policyBuilder.RequireRole("Admin");
+    });
+    options.AddPolicy("ModeratorAccess", policyBuilder =>
+    {
+        policyBuilder.RequireRole("Moderator");
+    });
+    options.AddPolicy("UserAccess", policyBuilder =>
+    {
+        policyBuilder.RequireRole("User");
+    });
+});
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -44,6 +94,7 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
