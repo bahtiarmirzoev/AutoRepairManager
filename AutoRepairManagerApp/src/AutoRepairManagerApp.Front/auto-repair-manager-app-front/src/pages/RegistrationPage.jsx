@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import { FaUser, FaEnvelope, FaLock, FaCar } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function RegistrationPage() {
   const [formData, setFormData] = useState({
-    username: "",
+    name: "",
+    surname: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
 
+  const navigate = useNavigate();
+  
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -17,9 +20,51 @@ function RegistrationPage() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Form submission logic here
+    if (formData.password !== formData.confirmPassword) {
+      alert("Пароли не совпадают!");
+      return;
+    }
+    const formDataToSend = new FormData();
+    formDataToSend.append("name", formData.name);
+    formDataToSend.append("surname", formData.surname);
+    formDataToSend.append("email", formData.email);
+    formDataToSend.append("password", formData.password);
+
+  
+    try {
+      
+      const response = await fetch("http://localhost:5271/api/Identity/Registration", {
+         method: "POST",
+        body: formDataToSend,
+      });
+  
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Ошибка при регистрации");
+      }
+  
+      const data = await response.json();
+      //alert("Регистрация успешна!");
+      console.log(data);
+      
+      const encoder = new TextEncoder();
+      const dataBuffer = encoder.encode(formData.email);
+      const hashedBuffer = await crypto.subtle.digest("SHA-256", dataBuffer);
+      const hashedArray = Array.from(new Uint8Array(hashedBuffer));
+      const hashedString = hashedArray.map((b) => b.toString(16).padStart(2, "0")).join("");
+
+      localStorage.setItem("userToken", hashedString);
+
+      navigate("/");
+
+    } 
+    catch (error) {
+      console.error("Ошибка:", error);
+      alert(error.message);
+    }
+  
   };
 
   return (
@@ -44,18 +89,37 @@ function RegistrationPage() {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="relative">
             <label htmlFor="username" className="text-gray-600">
-              Имя пользователя
+              Имя
             </label>
             <div className="flex items-center border border-blue-300 rounded-md bg-white">
               <FaUser className="text-blue-400 mx-3" />
               <input
                 type="text"
-                id="username"
-                name="username"
-                value={formData.username}
+                id="name"
+                name="name"
+                value={formData.name}
                 onChange={handleChange}
                 className="w-full px-4 py-2 bg-transparent text-gray-700 focus:outline-none"
-                placeholder="Введите имя пользователя"
+                placeholder="Введите имя"
+                required
+              />
+            </div>
+          </div>
+          
+          <div className="relative">
+            <label htmlFor="surname" className="text-gray-600">
+              Фамилия
+            </label>
+            <div className="flex items-center border border-blue-300 rounded-md bg-white">
+              <FaUser className="text-blue-400 mx-3" />
+              <input
+                type="text"
+                id="surname"
+                name="surname"
+                value={formData.surname}
+                onChange={handleChange}
+                className="w-full px-4 py-2 bg-transparent text-gray-700 focus:outline-none"
+                placeholder="Введите фамилию"
                 required
               />
             </div>
@@ -63,7 +127,7 @@ function RegistrationPage() {
 
           <div className="relative">
             <label htmlFor="email" className="text-gray-600">
-              Email
+              Электронная почта
             </label>
             <div className="flex items-center border border-blue-300 rounded-md bg-white">
               <FaEnvelope className="text-blue-400 mx-3" />

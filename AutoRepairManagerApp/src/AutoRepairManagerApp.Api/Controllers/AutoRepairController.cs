@@ -25,7 +25,7 @@ public class AutoRepairController : ControllerBase
         this.autoRepairDirConfiguration = autoRepairDirConfiguration;
     }
 
-    [HttpGet("AutoRepairs")]
+    [HttpGet("GetAll")]
     [AllowAnonymous]
     public async Task<IActionResult> GetAll()
     {

@@ -7,6 +7,7 @@ function LoginPage() {
     email: "",
     password: "",
   });
+  
 
   const handleChange = (e) => {
     setFormData({
@@ -15,9 +16,29 @@ function LoginPage() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Логика отправки формы
+    try {
+      const  response = await fetch("https://localhost:5271/api/Identity/Login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Invalid email or password");
+      }
+
+      const data = await response.json();
+
+      localStorage.setItem("token", data.token);
+
+      //navigate("/Home");
+    } catch (err) {
+      //setError(err.message);
+    }
   };
 
   return (

@@ -79,7 +79,7 @@ public class IdentityController : Controller
 
     [HttpPost("Registration")]
     [AllowAnonymous]
-    public async Task<IActionResult> Registration([FromForm] RegistrationDTO registrationDto, IFormFile? avatar)
+    public async Task<IActionResult> Registration([FromForm] RegistrationDTO registrationDto)//, IFormFile? avatar)
     {
         try
         {
@@ -88,23 +88,31 @@ public class IdentityController : Controller
             if (userId == null)
                 return Conflict(new { message = "This email is already in use" });
 
-            var avatarFilePath = $"{avatarDirConfiguration["StaticFileRoutes:Avatars"]}{userId}";
-            var extension = avatar != null ? Path.GetExtension(avatar.FileName) : ".jpg";
+            // var avatarFilePath = $"{avatarDirConfiguration["StaticFileRoutes:Avatars"]}{userId}";
+            // var extension = avatar != null ? Path.GetExtension(avatar.FileName) : ".jpg";
 
-            using var newFileStream = System.IO.File.Create(avatarFilePath + extension);
-            if (avatar != null)
-            {
-                await avatar.CopyToAsync(newFileStream);
-            }
-            else
-            {
-                using var httpClient = new HttpClient();
-                var response = await httpClient.GetAsync("https://wallpapers.com/images/hd/blank-default-pfp-wue0zko1dfxs9z2c.jpg");
-                await response.Content.CopyToAsync(newFileStream);
-            }
+            // using var newFileStream = System.IO.File.Create(avatarFilePath + extension);
+            // if (avatar != null)
+            // {
+            //     await avatar.CopyToAsync(newFileStream);
+            // }
+            // else
+            // {
+            //     using var httpClient = new HttpClient();
+            //     var response = await httpClient.GetAsync("https://wallpapers.com/images/hd/blank-default-pfp-wue0zko1dfxs9z2c.jpg");
+            //     await response.Content.CopyToAsync(newFileStream);
+            // }
 
             return Ok(new { message = "Registration successful" });
-        }
+        }const encoder = new TextEncoder();
+    const dataBuffer = encoder.encode(email);
+    const hashedBuffer = await crypto.subtle.digest("SHA-256", dataBuffer);
+    const hashedArray = Array.from(new Uint8Array(hashedBuffer));
+    const hashedString = hashedArray.map((b) => b.toString(16).padStart(2, "0")).join("");
+
+    // Save the hashed email in localStorage
+    localStorage.setItem("userToken", hashedString);
+
         catch (Exception ex)
         {
             return BadRequest(new { message = ex.Message });
