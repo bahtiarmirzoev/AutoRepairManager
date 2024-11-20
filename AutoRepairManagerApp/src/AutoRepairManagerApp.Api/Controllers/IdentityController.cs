@@ -41,30 +41,36 @@ public class IdentityController : Controller
     [AllowAnonymous]
     public async Task<IActionResult> Login([FromBody] LogInDTO loginDto)
     {
-        loginDto.Password = Convert.ToBase64String(Encoding.UTF8.GetBytes(loginDto.Password));
-        var user = await identityService.Login(loginDto);
-
-        if (user == null)
+        try
         {
-            return Unauthorized(new { message = "Incorrect login or password!" });
+            loginDto.Password = Convert.ToBase64String(Encoding.UTF8.GetBytes(loginDto.Password));
+            var user = await identityService.Login(loginDto);
+
+            if (user == null)
+            {
+                return Unauthorized(new { message = "Incorrect login or password!" });
+            }
+
+            //var hashedUserId = dataProtector.Protect(user.Id.ToString());
+            // var claims = new[]
+            // {
+            //     new Claim(ClaimTypes.Email, user.Email),
+            //     new Claim(ClaimTypes.Name, user.Name),
+            //     new Claim("Id", hashedUserId)
+            // };
+            // var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            // var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+
+            // await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
+
+            //HttpContext.Response.Cookies.Append("CurrentUserId", user.Id.ToString());
+
+            return Ok(new { message = "Login successful", userId = user.Id.ToString() });
         }
-
-        var hashedUserId = dataProtector.Protect(user.Id.ToString());
-        var claims = new[]
+        catch (Exception ex)
         {
-            new Claim(ClaimTypes.Email, user.Email),
-            new Claim(ClaimTypes.Name, user.Name),
-            new Claim("Id", hashedUserId)
-        };
-
-        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-        var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
-
-        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
-
-        HttpContext.Response.Cookies.Append("CurrentUserId", user.Id.ToString());
-        
-        return Ok(new { message = "Login successful", user });
+            return BadRequest(new { message = ex.Message });
+        }
     }
 
     [HttpPost("Logout")]
@@ -103,16 +109,8 @@ public class IdentityController : Controller
             //     await response.Content.CopyToAsync(newFileStream);
             // }
 
-            return Ok(new { message = "Registration successful" });
-        }const encoder = new TextEncoder();
-    const dataBuffer = encoder.encode(email);
-    const hashedBuffer = await crypto.subtle.digest("SHA-256", dataBuffer);
-    const hashedArray = Array.from(new Uint8Array(hashedBuffer));
-    const hashedString = hashedArray.map((b) => b.toString(16).padStart(2, "0")).join("");
-
-    // Save the hashed email in localStorage
-    localStorage.setItem("userToken", hashedString);
-
+            return Ok(new { message = "Registration successful", userId = userId });
+        }
         catch (Exception ex)
         {
             return BadRequest(new { message = ex.Message });

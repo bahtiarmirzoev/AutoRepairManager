@@ -21,8 +21,8 @@ public class IdentityEfCoreRepository : IIdentityRepository
     public async Task<User?> Login(LogInDTO loginDto)
     {
         var user = dbContext.Users.FirstOrDefault(x => x.Email == loginDto.Email && x.Password == loginDto.Password);
-        if(user == null) return null;
-        var role = await GetRole(user.Id);
+        //if(user == null) return null;
+        //var role = await GetRole(user.Id);
         return user;
     }
 

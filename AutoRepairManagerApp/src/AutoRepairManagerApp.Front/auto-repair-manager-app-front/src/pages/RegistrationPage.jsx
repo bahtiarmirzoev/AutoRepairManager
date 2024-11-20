@@ -12,7 +12,7 @@ function RegistrationPage() {
   });
 
   const navigate = useNavigate();
-  
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -22,6 +22,7 @@ function RegistrationPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (formData.password !== formData.confirmPassword) {
       alert("Пароли не совпадают!");
       return;
@@ -36,9 +37,12 @@ function RegistrationPage() {
     try {
       
       const response = await fetch("http://localhost:5271/api/Identity/Registration", {
-         method: "POST",
+        method: "POST",
         body: formDataToSend,
       });
+
+
+      
   
       if (!response.ok) {
         const errorData = await response.json();
@@ -46,11 +50,9 @@ function RegistrationPage() {
       }
   
       const data = await response.json();
-      //alert("Регистрация успешна!");
-      console.log(data);
       
       const encoder = new TextEncoder();
-      const dataBuffer = encoder.encode(formData.email);
+      const dataBuffer = encoder.encode(data.userId);
       const hashedBuffer = await crypto.subtle.digest("SHA-256", dataBuffer);
       const hashedArray = Array.from(new Uint8Array(hashedBuffer));
       const hashedString = hashedArray.map((b) => b.toString(16).padStart(2, "0")).join("");

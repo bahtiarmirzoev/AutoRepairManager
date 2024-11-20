@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaEnvelope, FaLock, FaCar } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function LoginPage() {
   const [formData, setFormData] = useState({
@@ -8,6 +8,7 @@ function LoginPage() {
     password: "",
   });
   
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -18,28 +19,42 @@ function LoginPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
+    const formDataToSend = new FormData();
+    formDataToSend.append("email", formData.email);
+    formDataToSend.append("password", formData.password);
+  
     try {
-      const  response = await fetch("https://localhost:5271/api/Identity/Login", {
+      const response = await fetch("http://localhost:5271/api/Identity/Login", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+        body: formDataToSend,
       });
-
+  
       if (!response.ok) {
-        throw new Error("Invalid email or password");
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Ошибка входа");
       }
-
+  
       const data = await response.json();
-
-      localStorage.setItem("token", data.token);
-
-      //navigate("/Home");
-    } catch (err) {
-      //setError(err.message);
+  
+      const encoder = new TextEncoder();
+      const dataBuffer = encoder.encode(data.userId);
+      const hashedBuffer = await crypto.subtle.digest("SHA-256", dataBuffer);
+      const hashedArray = Array.from(new Uint8Array(hashedBuffer));
+      const hashedString = hashedArray.map((b) => b.toString(16).padStart(2, "0")).join("");
+  
+      localStorage.setItem("userToken", hashedString);
+  
+      navigate("/");
+  
+    } 
+    catch (error) {
+      console.error("Ошибка:", error);
+      alert(error.message);
     }
   };
+  
+  
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-blue-100 relative overflow-hidden">
