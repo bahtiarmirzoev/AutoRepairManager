@@ -41,25 +41,11 @@ function RegistrationPage() {
         body: formDataToSend,
       });
 
-
-      
-  
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message || "Ошибка при регистрации");
       }
-  
-      const data = await response.json();
-      
-      const encoder = new TextEncoder();
-      const dataBuffer = encoder.encode(data.userId);
-      const hashedBuffer = await crypto.subtle.digest("SHA-256", dataBuffer);
-      const hashedArray = Array.from(new Uint8Array(hashedBuffer));
-      const hashedString = hashedArray.map((b) => b.toString(16).padStart(2, "0")).join("");
-
-      localStorage.setItem("userToken", hashedString);
-
-      navigate("/");
+      navigate("/LoginPage");
 
     } 
     catch (error) {

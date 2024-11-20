@@ -39,7 +39,7 @@ public class IdentityController : Controller
 
     [HttpPost("Login")]
     [AllowAnonymous]
-    public async Task<IActionResult> Login([FromBody] LogInDTO loginDto)
+    public async Task<IActionResult> Login([FromForm] LogInDTO loginDto)
     {
         try
         {
@@ -77,8 +77,8 @@ public class IdentityController : Controller
     [Authorize]
     public async Task<IActionResult> Logout()
     {
-        HttpContext.Response.Cookies.Delete("CurrentUserId");
-        await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        //HttpContext.Response.Cookies.Delete("CurrentUserId");
+        //await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
         return Ok(new { message = "Logged out successfully" });
     }
