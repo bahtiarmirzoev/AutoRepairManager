@@ -108,6 +108,7 @@ app.UseHttpsRedirection();
 
 app.UseCors("ReactAppPolicy");
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers(); 
