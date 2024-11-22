@@ -49,6 +49,15 @@ const Profile = () => {
     setIsEditing(false);
     console.log("Изменённые данные:", userData);
   };
+  const handleAccept = (id) => {
+    console.log(`Запрос с ID ${id} принят.`);
+    // Добавьте здесь логику для обработки принятия.
+  };
+
+  const handleReject = (id) => {
+    console.log(`Запрос с ID ${id} отклонён.`);
+    // Добавьте здесь логику для обработки отказа.
+  };
 
   return (
     <div className="flex flex-col md:flex-row bg-gradient-to-br from-gray-50 to-gray-100 p-8 min-h-screen space-y-6 md:space-y-0 md:space-x-6">
@@ -156,10 +165,39 @@ const Profile = () => {
           ))}
         </ul>
       </div>
+
       <div className="w-full md:w-1/3 bg-white shadow-xl rounded-2xl p-8">
         <h2 className="text-3xl font-bold mb-6 text-gray-800 border-b-4 border-blue-500 pb-3">
           Запросы на запчасти
         </h2>
+        <ul className="space-y-4">
+          {repairDetails.map((detail) => (
+            <li
+              key={detail.id}
+              className="p-4 bg-gray-50 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+            >
+              <p className="text-lg font-semibold text-gray-800">
+                {detail.description}
+              </p>
+              <p className="text-sm text-gray-600 mt-2">{detail.date}</p>
+              <p className="text-sm text-gray-600 mt-1">Цена: {detail.price}</p>
+              <div className="flex space-x-4 mt-4">
+                <button
+                  onClick={() => handleAccept(detail.id)}
+                  className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors duration-200"
+                >
+                  Принять
+                </button>
+                <button
+                  onClick={() => handleReject(detail.id)}
+                  className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors duration-200"
+                >
+                  Отказать
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
