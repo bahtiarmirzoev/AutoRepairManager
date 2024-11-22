@@ -10,7 +10,7 @@ using AutoRepairManagerApp.Core.Enums;
 
 namespace AutoRepairManagerApp.Api.Controllers;
 
-[Authorize(Roles = "Admin")]
+// [Authorize(Roles = "Admin")]
 [Route("api/[controller]")]
 [ApiController] 
 public class AdminController : ControllerBase
@@ -77,6 +77,13 @@ public class AdminController : ControllerBase
         await this.adminService.DeleteUser(id);
         return NoContent();
     }
+
+    // [HttpPut("EditUser/{id}")]
+    // public async Task<IActionResult> EditUser(Guid id)
+    // {
+    //     await this.adminService.EditUser(id);
+    //     return NoContent();
+    // }
 
     [HttpDelete("DeleteAutoRepair/{id}")]
     public async Task<IActionResult> DeleteAutoRepair(Guid id)

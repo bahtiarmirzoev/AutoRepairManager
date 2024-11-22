@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
@@ -9,29 +9,22 @@ import {
 } from "@heroicons/react/outline";
 
 const Users = () => {
-  const [users, setUsers] = useState([
-    {
-      id: 1,
-      name: "John Doe",
-      email: "john.doe@example.com",
-      phone: "+123456789",
-    },
-    {
-      id: 2,
-      name: "Jane Smith",
-      email: "jane.smith@example.com",
-      phone: "+987654321",
-    },
-  ]);
+  const [users, setUsers] = useState([]);
 
   const [searchQuery, setSearchQuery] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
 
-  const handleAddUser = () => {
-    setSelectedUser(null);
-    setIsModalOpen(true);
-  };
+  useEffect(() => {
+    fetch("http://localhost:5271/api/admin/users")
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setUsers(data);
+      });
+  }, []);
 
   const handleEditUser = (user) => {
     setSelectedUser(user);
@@ -49,11 +42,7 @@ const Users = () => {
         prevUsers.map((u) => (u.id === user.id ? user : u))
       );
       toast.info("User updated successfully!");
-    } else {
-      setUsers((prevUsers) => [...prevUsers, { ...user, id: Date.now() }]);
-      toast.success("New user added successfully!");
     }
-    setIsModalOpen(false);
   };
 
   const filteredUsers = users.filter(
@@ -79,13 +68,6 @@ const Users = () => {
           />
           <SearchIcon className="w-5 h-5 absolute right-3 top-3 text-gray-400" />
         </div>
-        <button
-          onClick={handleAddUser}
-          className="flex items-center bg-green-600 text-white px-4 py-2 rounded-md shadow-md hover:bg-green-700 transition"
-        >
-          <PlusCircleIcon className="w-5 h-5 mr-2" />
-          Add User
-        </button>
       </div>
 
       {filteredUsers.length > 0 ? (
