@@ -50,6 +50,7 @@ public class IdentityController : Controller
             {
                 return Unauthorized(new { message = "Incorrect login or password!" });
             }
+            string token = GuidEncryptor.EncryptGuid(user.Id);
 
             //var hashedUserId = dataProtector.Protect(user.Id.ToString());
             // var claims = new[]
@@ -65,7 +66,7 @@ public class IdentityController : Controller
 
             //HttpContext.Response.Cookies.Append("CurrentUserId", user.Id.ToString());
 
-            return Ok(new { message = "Login successful", userId = user.Id.ToString() });
+            return Ok(new { message = "Login successful", userId = token });
         }
         catch (Exception ex)
         {
@@ -109,7 +110,7 @@ public class IdentityController : Controller
             //     await response.Content.CopyToAsync(newFileStream);
             // }
 
-            return Ok(new { message = "Registration successful", userId = userId });
+            return Ok(new { message = "Registration successful" });
         }
         catch (Exception ex)
         {
@@ -117,25 +118,27 @@ public class IdentityController : Controller
         }
     }
 
-    [HttpGet("User/{id}")]
-    [Authorize]
-    public async Task<IActionResult> GetUserById(Guid id)
+    [HttpGet("User/{token}")]
+    public async Task<IActionResult> GetUserById(string token)
     {
+        Guid id;
+        try
+        {
+            id = GuidEncryptor.DecryptGuid(token);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Failed to decrypt token: {ex.Message}");
+            return BadRequest(new { message = "Invalid token" });
+        }
+        System.Console.WriteLine(id);
         var user = await identityService.GetByIdAsync(id);
         if (user == null)
         {
             return NotFound(new { message = "User not found" });
         }
 
-        var currentUserId = HttpContext.Request.Cookies["CurrentUserId"];
-        var isCurrentUser = currentUserId != null && Guid.TryParse(currentUserId, out var userId) && userId == id;
-
-        return Ok(new
-        {
-            user,
-            isCurrentUser,
-            avatarPath = $"{avatarDirConfiguration["StaticFileRoutes:Avatars"]}{user.Id}.jpg"
-        });
+        return Ok(new { user = user });
     }
 
     [HttpPost("SendEmail")]
