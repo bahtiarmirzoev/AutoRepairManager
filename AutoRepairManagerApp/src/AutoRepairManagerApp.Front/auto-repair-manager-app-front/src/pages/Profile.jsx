@@ -57,28 +57,9 @@ const Profile = () => {
     console.log(`Запрос с ID ${id} отклонён.`);
   };
 
-  const [cars, setCars] = useState([
-    { model: "Toyota Camry", licensePlate: "AA1234BB" },
-    { model: "BMW X5", licensePlate: "CC5678DD" },
-  ]);
-
-  const handleAddCar = () => {
-    const newCar = { model: "", licensePlate: "" };
-    setCars([...cars, newCar]);
-  };
-
-  const handleEditCar = (index) => {
-    // Реализация логики редактирования автомобиля
-  };
-
-  const handleDeleteCar = (index) => {
-    setCars(cars.filter((_, i) => i !== index));
-  };
-
   return (
     <div className="flex flex-col md:flex-row bg-gradient-to-br from-gray-50 to-gray-100 p-8 min-h-screen space-y-6 md:space-y-0 md:space-x-6">
       <div className="w-full md:w-2/3 bg-white shadow-xl rounded-2xl p-8">
-        {/* Личная информация */}
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-3xl font-bold text-gray-800 border-b-4 border-blue-500 pb-3">
             Личная информация
@@ -158,48 +139,6 @@ const Profile = () => {
             </div>
           </div>
         )}
-
-        {/* Управление автомобилями */}
-        <div className="mt-8">
-          <h2 className="text-3xl font-bold text-gray-800 border-b-4 border-blue-500 pb-3">
-            Ваши автомобили
-          </h2>
-          <div className="space-y-4 mt-4">
-            {cars.map((car, index) => (
-              <div
-                key={index}
-                className="flex items-center justify-between bg-gray-100 p-4 rounded-lg shadow-md"
-              >
-                <div>
-                  <p className="text-lg font-medium text-gray-800">
-                    {car.model}
-                  </p>
-                  <p className="text-sm text-gray-600">
-                    Номер: {car.licensePlate}
-                  </p>
-                </div>
-                <div className="flex space-x-3">
-                  <button
-                    onClick={() => handleEditCar(index)}
-                    className="text-blue-600 hover:text-blue-700"
-                  >
-                    <FaEdit />
-                  </button>
-                  <button
-                    onClick={() => handleDeleteCar(index)}
-                    className="text-red-600 hover:text-red-700"
-                  ></button>
-                </div>
-              </div>
-            ))}
-            <button
-              onClick={handleAddCar}
-              className="w-full px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 mt-4"
-            >
-              Добавить автомобиль
-            </button>
-          </div>
-        </div>
       </div>
 
       <div className="w-full md:w-1/3 bg-white shadow-xl rounded-2xl p-8">
