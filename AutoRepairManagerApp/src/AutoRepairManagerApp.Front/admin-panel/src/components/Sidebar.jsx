@@ -63,6 +63,13 @@ const Sidebar = () => {
                 <ClipboardListIcon className="h-5 w-5 mr-2" />
                 Car Statuses
               </button>
+              <button
+                onClick={() => navigate("/repairrequests")}
+                className="flex items-center px-4 py-2 hover:bg-gray-700 transition"
+              >
+                <ClipboardListIcon className="h-5 w-5 mr-2" />
+                Repair Requests
+              </button>
             </li>
           </ul>
         </nav>

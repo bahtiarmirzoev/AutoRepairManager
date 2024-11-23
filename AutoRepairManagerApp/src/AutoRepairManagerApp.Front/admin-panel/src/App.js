@@ -6,6 +6,7 @@ import Cars from "./pages/Cars";
 import Dashboard from "./pages/Dashboard";
 import { ToastContainer } from "react-toastify";
 import CarStatuses from "./pages/CarStatuses";
+import RepairRequests from "./pages/RepairRequests";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
             <Route path="/users" element={<Users />} />
             <Route path="/cars" element={<Cars />} />
             <Route path="/carstatuses" element={<CarStatuses />} />
+            <Route path="/repairrequests" element={<RepairRequests />} />
           </Routes>
         </main>
       </div>
