@@ -5,14 +5,14 @@ import {
   Marker,
   InfoWindow,
 } from "@react-google-maps/api";
-
+// 40.420821, 49.851098
 const serviceLocations = [
   {
     name: "Автосервис Darnagul",
     address: "г. Баку, ул. Низами, 45",
     phone: "+994 55 123 4567",
     hours: "Пн-Пт: 9:00 - 19:00, Сб: 10:00 - 16:00",
-    position: { lat: 40.414308, lng: 49.851272 },
+    position: { lat: 40.420821, lng: 49.851098 },
   },
   {
     name: "Автосервис Yasamal",
