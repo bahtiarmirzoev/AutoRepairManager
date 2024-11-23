@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../Chatbot.css";
+// import "../Chatbot.css";x
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCog,

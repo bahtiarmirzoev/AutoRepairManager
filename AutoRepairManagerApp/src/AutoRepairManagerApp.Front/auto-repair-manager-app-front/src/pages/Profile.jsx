@@ -140,6 +140,25 @@ const Profile = () => {
           </div>
         )}
       </div>
+      <div className="w-full md:w-1/3 bg-white shadow-xl rounded-2xl p-8">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-3xl font-bold text-gray-800 border-b-4 border-blue-500 pb-3">
+            Мои Автомобили
+          </h2>
+        </div>
+        <div className="space-y-4">
+          {/* Buttons Section */}
+          <button className="w-full bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition">
+            Добавить автомобиль
+          </button>
+          <button className="w-full bg-yellow-500 text-white py-2 px-4 rounded-lg hover:bg-yellow-600 transition">
+            Редактировать автомобиль
+          </button>
+          <button className="w-full bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition">
+            Удалить автомобиль
+          </button>
+        </div>
+      </div>
 
       <div className="w-full md:w-1/3 bg-white shadow-xl rounded-2xl p-8">
         <h2 className="text-3xl font-bold mb-6 text-gray-800 border-b-4 border-blue-500 pb-3">
