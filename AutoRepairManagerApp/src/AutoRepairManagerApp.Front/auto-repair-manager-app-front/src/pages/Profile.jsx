@@ -32,7 +32,7 @@ const Profile = () => {
     {
       id: 3,
       date: "2024-10-12",
-      description: "Тормозные суппарта",
+      description: "Тормозные суппорта",
       price: "40 AZN",
     },
   ];
@@ -49,6 +49,7 @@ const Profile = () => {
     setIsEditing(false);
     console.log("Изменённые данные:", userData);
   };
+
   const handleAccept = (id) => {
     console.log(`Запрос с ID ${id} принят.`);
   };
@@ -57,8 +58,18 @@ const Profile = () => {
     console.log(`Запрос с ID ${id} отклонён.`);
   };
 
+  const Section = ({ title, children }) => (
+    <div className="w-full md:w-1/3 bg-white shadow-xl rounded-2xl p-8">
+      <h2 className="text-3xl font-bold mb-6 text-gray-800 border-b-4 border-blue-500 pb-3">
+        {title}
+      </h2>
+      {children}
+    </div>
+  );
+
   return (
     <div className="flex flex-col md:flex-row bg-gradient-to-br from-gray-50 to-gray-100 p-8 min-h-screen space-y-6 md:space-y-0 md:space-x-6">
+      {/* Personal Information */}
       <div className="w-full md:w-2/3 bg-white shadow-xl rounded-2xl p-8">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-3xl font-bold text-gray-800 border-b-4 border-blue-500 pb-3">
@@ -91,38 +102,28 @@ const Profile = () => {
           </div>
         ) : (
           <div className="space-y-4">
-            <div>
-              <label className="text-lg font-medium block mb-2">Имя:</label>
-              <input
-                type="text"
-                name="firstName"
-                value={userData.firstName}
-                onChange={handleInputChange}
-                className="w-full p-3 border rounded-xl shadow-inner focus:outline-none focus:ring focus:ring-blue-300"
-              />
-            </div>
-            <div>
-              <label className="text-lg font-medium block mb-2">Email:</label>
-              <input
-                type="email"
-                name="email"
-                value={userData.email}
-                onChange={handleInputChange}
-                className="w-full p-3 border rounded-xl shadow-inner focus:outline-none focus:ring focus:ring-blue-300"
-              />
-            </div>
-            <div>
-              <label className="text-lg font-medium block mb-2">
-                Номер телефона:
-              </label>
-              <input
-                type="tel"
-                name="phone"
-                value={userData.phone}
-                onChange={handleInputChange}
-                className="w-full p-3 border rounded-xl shadow-inner focus:outline-none focus:ring focus:ring-blue-300"
-              />
-            </div>
+            {["Имя", "Email", "Телефон"].map((label, index) => (
+              <div key={index}>
+                <label className="text-lg font-medium block mb-2">
+                  {label}:
+                </label>
+                <input
+                  type={index === 1 ? "email" : "text"}
+                  name={
+                    index === 0 ? "firstName" : index === 1 ? "email" : "phone"
+                  }
+                  value={
+                    index === 0
+                      ? userData.firstName
+                      : index === 1
+                      ? userData.email
+                      : userData.phone
+                  }
+                  onChange={handleInputChange}
+                  className="w-full p-3 border rounded-xl shadow-inner focus:outline-none focus:ring focus:ring-blue-300"
+                />
+              </div>
+            ))}
             <div className="mt-4 flex justify-end space-x-4">
               <button
                 onClick={() => setIsEditing(false)}
@@ -140,30 +141,29 @@ const Profile = () => {
           </div>
         )}
       </div>
-      <div className="w-full md:w-1/3 bg-white shadow-xl rounded-2xl p-8">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-3xl font-bold text-gray-800 border-b-4 border-blue-500 pb-3">
-            Мои Автомобили
-          </h2>
-        </div>
-        <div className="space-y-4">
-          {/* Buttons Section */}
-          <button className="w-full bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition">
-            Добавить автомобиль
-          </button>
-          <button className="w-full bg-yellow-500 text-white py-2 px-4 rounded-lg hover:bg-yellow-600 transition">
-            Редактировать автомобиль
-          </button>
-          <button className="w-full bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition">
-            Удалить автомобиль
-          </button>
-        </div>
-      </div>
 
-      <div className="w-full md:w-1/3 bg-white shadow-xl rounded-2xl p-8">
-        <h2 className="text-3xl font-bold mb-6 text-gray-800 border-b-4 border-blue-500 pb-3">
-          История ремонтов
-        </h2>
+      {/* Cars Section */}
+      <Section title="Мои Автомобили">
+        <div className="space-y-4">
+          {["Добавить", "Редактировать", "Удалить"].map((action, index) => (
+            <button
+              key={index}
+              className={`w-full py-2 px-4 rounded-lg hover:scale-105 transition-transform ${
+                index === 0
+                  ? "bg-green-500 hover:bg-green-600"
+                  : index === 1
+                  ? "bg-yellow-500 hover:bg-yellow-600"
+                  : "bg-red-500 hover:bg-red-600"
+              } text-white`}
+            >
+              {action} автомобиль
+            </button>
+          ))}
+        </div>
+      </Section>
+
+      {/* Repair History */}
+      <Section title="История ремонтов">
         <ul className="space-y-4">
           {repairHistory.map((repair) => (
             <li
@@ -177,12 +177,10 @@ const Profile = () => {
             </li>
           ))}
         </ul>
-      </div>
+      </Section>
 
-      <div className="w-full md:w-1/3 bg-white shadow-xl rounded-2xl p-8">
-        <h2 className="text-3xl font-bold mb-6 text-gray-800 border-b-4 border-blue-500 pb-3">
-          Запросы на запчасти
-        </h2>
+      {/* Repair Requests */}
+      <Section title="Запросы на запчасти">
         <ul className="space-y-4">
           {repairDetails.map((detail) => (
             <li
@@ -211,7 +209,7 @@ const Profile = () => {
             </li>
           ))}
         </ul>
-      </div>
+      </Section>
     </div>
   );
 };
