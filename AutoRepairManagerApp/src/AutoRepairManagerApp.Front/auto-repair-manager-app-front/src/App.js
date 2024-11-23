@@ -10,7 +10,7 @@ import Services from "./pages/Services";
 import Contacts from "./pages/Contact";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
-
+import Chatbot from "./components/Chatbot";
 function App() {
   return (
     <Router>
@@ -19,6 +19,7 @@ function App() {
           <Navbar />
         </header>
         <main>
+          <Chatbot />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/RegistrationPage" element={<RegistrationPage />} />
