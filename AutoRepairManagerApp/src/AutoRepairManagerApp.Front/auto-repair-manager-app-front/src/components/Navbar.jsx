@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 const handleLogout = async () => {
   try {
-    
     localStorage.removeItem("userToken");
     // const response = await fetch("http://localhost:5271/api/Identity/Logout", {
     //   method: "POST"
@@ -12,8 +11,7 @@ const handleLogout = async () => {
     // if (response.ok) {
     //   console.log("Logged out successfully");
 
-
-    window.location.href = "/LoginPage"; 
+    window.location.href = "/LoginPage";
     // } else {
     //   console.error("Failed to log out");
     // }
@@ -60,6 +58,13 @@ const Navbar = () => {
               className="text-gray-700 hover:text-blue-600 transition duration-200"
             >
               Контакты
+            </Link>
+
+            <Link
+              to="/RepairRequest"
+              className="text-gray-700 hover:text-blue-600 transition duration-200"
+            >
+              Сделать Запрос
             </Link>
           </div>
 
