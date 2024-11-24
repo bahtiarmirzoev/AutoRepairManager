@@ -165,7 +165,7 @@ const Profile = () => {
       <Section title="Мои Автомобили">
         {/* Cars Section */}
         <div className="space-y-4">
-          {["Добавить", "Редактировать", "Удалить"].map((action, index) => (
+          {["Добавить", "Удалить"].map((action, index) => (
             <button
               key={index}
               onClick={() => handleModalOpen(action)}
@@ -173,7 +173,7 @@ const Profile = () => {
                 index === 0
                   ? "bg-green-500 hover:bg-green-600"
                   : index === 1
-                  ? "bg-yellow-500 hover:bg-yellow-600"
+                  ? "bg-red-500 hover:bg-yellow-600"
                   : "bg-red-500 hover:bg-red-600"
               } text-white`}
             >
