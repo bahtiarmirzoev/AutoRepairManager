@@ -59,7 +59,7 @@ const Profile = () => {
   };
 
   const Section = ({ title, children }) => (
-    <div className="w-full md:w-1/3 bg-white shadow-xl rounded-2xl p-8">
+    <div className="w-full md:w-1/4 bg-white shadow-xl rounded-2xl p-8">
       <h2 className="text-3xl font-bold mb-6 text-gray-800 border-b-4 border-blue-500 pb-3">
         {title}
       </h2>
@@ -70,7 +70,7 @@ const Profile = () => {
   return (
     <div className="flex flex-col md:flex-row bg-gradient-to-br from-gray-50 to-gray-100 p-8 min-h-screen space-y-6 md:space-y-0 md:space-x-6">
       {/* Personal Information */}
-      <div className="w-full md:w-2/3 bg-white shadow-xl rounded-2xl p-8">
+      <div className="w-full md:w-1/4 bg-white shadow-xl rounded-2xl p-8">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-3xl font-bold text-gray-800 border-b-4 border-blue-500 pb-3">
             Личная информация
@@ -179,7 +179,7 @@ const Profile = () => {
         </ul>
       </Section>
 
-      {/* Repair Requests */}
+      {/* Repair Parts Requests */}
       <Section title="Запросы на запчасти">
         <ul className="space-y-4">
           {repairDetails.map((detail) => (
