@@ -9,6 +9,15 @@ const Profile = () => {
   });
 
   const [isEditing, setIsEditing] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalAction, setModalAction] = useState(null); // Track the action (Add, Edit, Delete)
+  const [carData, setCarData] = useState({
+    make: "",
+    model: "",
+    year: "",
+    technicalpassport: "",
+    licenseplate: "",
+  });
 
   const repairHistory = [
     { id: 1, date: "2024-10-12", description: "Замена масла" },
@@ -56,6 +65,16 @@ const Profile = () => {
 
   const handleReject = (id) => {
     console.log(`Запрос с ID ${id} отклонён.`);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+    setModalAction(null);
+  };
+
+  const handleModalOpen = (action) => {
+    setModalAction(action);
+    setIsModalOpen(true);
   };
 
   const Section = ({ title, children }) => (
@@ -144,10 +163,12 @@ const Profile = () => {
 
       {/* Cars Section */}
       <Section title="Мои Автомобили">
+        {/* Cars Section */}
         <div className="space-y-4">
           {["Добавить", "Редактировать", "Удалить"].map((action, index) => (
             <button
               key={index}
+              onClick={() => handleModalOpen(action)}
               className={`w-full py-2 px-4 rounded-lg hover:scale-105 transition-transform ${
                 index === 0
                   ? "bg-green-500 hover:bg-green-600"
@@ -210,6 +231,133 @@ const Profile = () => {
           ))}
         </ul>
       </Section>
+
+      {/* Modal for Car Actions */}
+      {isModalOpen && (
+        <div className="fixed inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50 z-50">
+          <div className="bg-white p-8 rounded-lg shadow-lg w-1/3">
+            <h2 className="text-2xl font-semibold mb-4">
+              {modalAction === "Добавить"
+                ? "Добавить автомобиль"
+                : modalAction === "Редактировать"
+                ? "Редактировать автомобиль"
+                : "Удалить автомобиль"}
+            </h2>
+            <div>
+              {/* Fields for adding/editing car */}
+              {modalAction !== "Удалить" ? (
+                <>
+                  <div className="mb-4">
+                    <label
+                      htmlFor="make"
+                      className="block text-lg font-medium mb-2"
+                    >
+                      Марка автомобиля:
+                    </label>
+                    <input
+                      type="text"
+                      id="make"
+                      name="make"
+                      value={carData.make}
+                      onChange={handleInputChange}
+                      className="w-full p-3 border rounded-xl shadow-inner focus:outline-none focus:ring focus:ring-blue-300"
+                      placeholder="Введите марку автомобиля"
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label
+                      htmlFor="model"
+                      className="block text-lg font-medium mb-2"
+                    >
+                      Модель автомобиля:
+                    </label>
+                    <input
+                      type="text"
+                      id="model"
+                      name="model"
+                      value={carData.model}
+                      onChange={handleInputChange}
+                      className="w-full p-3 border rounded-xl shadow-inner focus:outline-none focus:ring focus:ring-blue-300"
+                      placeholder="Введите модель автомобиля"
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label
+                      htmlFor="year"
+                      className="block text-lg font-medium mb-2"
+                    >
+                      Год выпуска:
+                    </label>
+                    <input
+                      type="number"
+                      id="year"
+                      name="year"
+                      value={carData.year}
+                      onChange={handleInputChange}
+                      className="w-full p-3 border rounded-xl shadow-inner focus:outline-none focus:ring focus:ring-blue-300"
+                      placeholder="Введите год выпуска"
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label
+                      htmlFor="color"
+                      className="block text-lg font-medium mb-2"
+                    >
+                      Номер тех.паспорта автомобиля:
+                    </label>
+                    <input
+                      type="text"
+                      id="color"
+                      name="color"
+                      value={carData.technicalpassport}
+                      onChange={handleInputChange}
+                      className="w-full p-3 border rounded-xl shadow-inner focus:outline-none focus:ring focus:ring-blue-300"
+                      placeholder="Введите номер тех.паспорта"
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label
+                      htmlFor="color"
+                      className="block text-lg font-medium mb-2"
+                    >
+                      Номерной знак
+                    </label>
+                    <input
+                      type="text"
+                      id="color"
+                      name="color"
+                      value={carData.licenseplate}
+                      onChange={handleInputChange}
+                      className="w-full p-3 border rounded-xl shadow-inner focus:outline-none focus:ring focus:ring-blue-300"
+                      placeholder="Введите номерной знак авто"
+                    />
+                  </div>
+                </>
+              ) : (
+                <p>Вы уверены, что хотите удалить этот автомобиль?</p>
+              )}
+            </div>
+            <div className="flex justify-end space-x-4 mt-4">
+              <button
+                onClick={handleModalClose}
+                className="px-4 py-2 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400"
+              >
+                Отмена
+              </button>
+              <button
+                onClick={() => {
+                  // Handle save or delete action
+                  console.log(modalAction, carData);
+                  handleModalClose();
+                }}
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              >
+                {modalAction === "Удалить" ? "Удалить" : "Сохранить"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
