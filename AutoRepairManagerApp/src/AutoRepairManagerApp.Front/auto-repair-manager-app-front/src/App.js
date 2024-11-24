@@ -10,6 +10,7 @@ import Services from "./pages/Services";
 import Contacts from "./pages/Contact";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
+import RepairRequest from "./pages/RepairRequest";
 import Chatbot from "./components/Chatbot";
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/contact" element={<Contacts />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/repairrequest" element={<RepairRequest />} />
           </Routes>
         </main>
         <footer>

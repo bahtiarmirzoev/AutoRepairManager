@@ -4,6 +4,7 @@ const RepairRequest = () => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
+    technicalpassport: "",
     carBrand: "",
     carModel: "",
     issueDescription: "",
@@ -61,7 +62,7 @@ const RepairRequest = () => {
                 htmlFor="name"
                 className="block text-sm font-medium text-gray-700"
               >
-                Имя
+                Имя Фамилия
               </label>
               <input
                 type="text"
@@ -86,6 +87,23 @@ const RepairRequest = () => {
                 id="phone"
                 name="phone"
                 value={formData.phone}
+                onChange={handleChange}
+                className="mt-1 p-2 block w-full border rounded-md"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label
+                htmlFor="phone"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Номер тех.паспорта
+              </label>
+              <input
+                type="techpass"
+                id="techpass"
+                name="techpass"
+                value={formData.technicalpassport}
                 onChange={handleChange}
                 className="mt-1 p-2 block w-full border rounded-md"
                 required
