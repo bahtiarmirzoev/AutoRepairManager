@@ -161,9 +161,7 @@ const Profile = () => {
         )}
       </div>
 
-      {/* Cars Section */}
       <Section title="Мои Автомобили">
-        {/* Cars Section */}
         <div className="space-y-4">
           {["Добавить", "Удалить"].map((action, index) => (
             <button
