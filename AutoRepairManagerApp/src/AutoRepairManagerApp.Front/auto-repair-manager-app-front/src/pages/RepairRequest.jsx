@@ -11,6 +11,7 @@ const RepairRequest = () => {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false); // Для модального окна
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,6 +34,7 @@ const RepairRequest = () => {
         setFormData({
           name: "",
           phone: "",
+          technicalpassport: "",
           carBrand: "",
           carModel: "",
           issueDescription: "",
@@ -46,18 +48,20 @@ const RepairRequest = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-blue-50">
-      <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
-        <h1 className="text-2xl font-bold text-blue-600 mb-4">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="bg-white shadow-2xl rounded-lg p-8 w-full max-w-lg border border-gray-300">
+        <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
           Запрос на ремонт
         </h1>
         {isSubmitted ? (
           <div className="text-center">
-            <p className="text-green-600">Ваш запрос успешно отправлен!</p>
+            <p className="text-green-600 text-lg">
+              Ваш запрос успешно отправлен!
+            </p>
           </div>
         ) : (
           <form onSubmit={handleSubmit}>
-            <div className="mb-4">
+            <div className="mb-6">
               <label
                 htmlFor="name"
                 className="block text-sm font-medium text-gray-700"
@@ -70,12 +74,12 @@ const RepairRequest = () => {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                className="mt-1 p-2 block w-full border rounded-md"
+                className="mt-2 p-3 block w-full border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
                 required
               />
             </div>
 
-            <div className="mb-4">
+            <div className="mb-6">
               <label
                 htmlFor="phone"
                 className="block text-sm font-medium text-gray-700"
@@ -88,29 +92,39 @@ const RepairRequest = () => {
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                className="mt-1 p-2 block w-full border rounded-md"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label
-                htmlFor="phone"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Номер тех.паспорта
-              </label>
-              <input
-                type="techpass"
-                id="techpass"
-                name="techpass"
-                value={formData.technicalpassport}
-                onChange={handleChange}
-                className="mt-1 p-2 block w-full border rounded-md"
+                className="mt-2 p-3 block w-full border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
                 required
               />
             </div>
 
-            <div className="mb-4">
+            <div className="mb-6 relative">
+              <label
+                htmlFor="technicalpassport"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Номер тех.паспорта
+              </label>
+              <div className="flex items-center">
+                <input
+                  type="text"
+                  id="technicalpassport"
+                  name="technicalpassport"
+                  value={formData.technicalpassport}
+                  onChange={handleChange}
+                  className="mt-2 p-3 block w-full border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
+                  required
+                />
+                <button
+                  type="button"
+                  className="ml-2 text-gray-500 hover:text-blue-500"
+                  onClick={() => setIsModalOpen(true)}
+                >
+                  ℹ️
+                </button>
+              </div>
+            </div>
+
+            <div className="mb-6">
               <label
                 htmlFor="carBrand"
                 className="block text-sm font-medium text-gray-700"
@@ -123,12 +137,12 @@ const RepairRequest = () => {
                 name="carBrand"
                 value={formData.carBrand}
                 onChange={handleChange}
-                className="mt-1 p-2 block w-full border rounded-md"
+                className="mt-2 p-3 block w-full border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
                 required
               />
             </div>
 
-            <div className="mb-4">
+            <div className="mb-6">
               <label
                 htmlFor="carModel"
                 className="block text-sm font-medium text-gray-700"
@@ -141,12 +155,12 @@ const RepairRequest = () => {
                 name="carModel"
                 value={formData.carModel}
                 onChange={handleChange}
-                className="mt-1 p-2 block w-full border rounded-md"
+                className="mt-2 p-3 block w-full border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
                 required
               />
             </div>
 
-            <div className="mb-4">
+            <div className="mb-6">
               <label
                 htmlFor="issueDescription"
                 className="block text-sm font-medium text-gray-700"
@@ -158,7 +172,7 @@ const RepairRequest = () => {
                 name="issueDescription"
                 value={formData.issueDescription}
                 onChange={handleChange}
-                className="mt-1 p-2 block w-full border rounded-md"
+                className="mt-2 p-3 block w-full border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
                 rows="4"
                 required
               ></textarea>
@@ -166,13 +180,29 @@ const RepairRequest = () => {
 
             <button
               type="submit"
-              className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700"
+              className="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 focus:ring-4 focus:ring-blue-300"
             >
               Отправить запрос
             </button>
           </form>
         )}
       </div>
+
+      {/* Модальное окно */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white p-6 rounded-lg shadow-lg relative">
+            <button
+              className="absolute top-2 right-2 text-gray-600 hover:text-gray-900"
+              onClick={() => setIsModalOpen(false)}
+            >
+              ✖️
+            </button>
+            <h2 className="text-lg font-semibold mb-4">Пример техпаспорта</h2>
+            <p>Тут будет ваше изображение</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
