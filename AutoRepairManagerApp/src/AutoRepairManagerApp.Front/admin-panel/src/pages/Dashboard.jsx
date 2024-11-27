@@ -136,63 +136,6 @@ const Dashboard = () => {
           />
         </div>
       </div>
-
-      {/* Список последних машин */}
-      <div className="bg-white p-6 rounded-lg shadow-md mb-8">
-        <h2 className="text-2xl font-semibold text-gray-700 mb-4">
-          Recent Cars
-        </h2>
-        <div className="overflow-x-auto">
-          <table className="w-full bg-white rounded-lg shadow-md">
-            <thead className="bg-blue-600 text-white">
-              <tr>
-                <th className="p-4 text-left">License Plate</th>
-                <th className="p-4 text-left">Status</th>
-                <th className="p-4 text-center">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {recentCars.map((car) => (
-                <tr
-                  key={car.id}
-                  className="hover:bg-gray-100 border-t border-gray-200 transition duration-200"
-                >
-                  <td className="p-4">{car.licensePlate}</td>
-                  <td className="p-4">
-                    <span
-                      className={`${
-                        car.status === "WAITING"
-                          ? "bg-yellow-500"
-                          : car.status === "IN_PROGRESS"
-                          ? "bg-red-500"
-                          : car.status === "COMPLETED"
-                          ? "bg-green-500"
-                          : "bg-gray-400"
-                      } text-white py-1 px-3 rounded-full`}
-                    >
-                      {car.status}
-                    </span>
-                  </td>
-                  <td className="p-4 flex justify-center space-x-4">
-                    <button
-                      onClick={() => handleDeleteCar(car.id)}
-                      className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 transition"
-                    >
-                      <TrashIcon className="w-5 h-5" />
-                    </button>
-                    <button
-                      onClick={() => handleStatusChange(car.id, "COMPLETED")}
-                      className="bg-green-500 text-white px-3 py-1 rounded-md hover:bg-green-600 transition"
-                    >
-                      Mark as Completed
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
     </div>
   );
 };
