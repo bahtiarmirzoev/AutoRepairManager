@@ -68,7 +68,7 @@ const Sidebar = () => {
                 className="flex items-center px-4 py-2 hover:bg-gray-700 transition"
               >
                 <ClipboardListIcon className="h-5 w-5 mr-2" />
-                Repair Requests
+                Repair Orders
               </button>
             </li>
           </ul>

@@ -1,30 +1,43 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-const repairRequests = [
-  {
-    id: 1,
-    username: "JohnDoe",
-    carInfo: "Toyota Corolla 2020, License Plate: AB123CD",
-    problemDescription: "Engine makes a loud noise when starting.",
-  },
-  {
-    id: 2,
-    username: "JaneSmith",
-    carInfo: "Honda Civic 2018, License Plate: XY456EF",
-    problemDescription: "Brake system needs a checkup.",
-  },
-  {
-    id: 3,
-    username: "MikeBrown",
-    carInfo: "BMW X5 2021, License Plate: GH789IJ",
-    problemDescription: "Air conditioning is not working properly.",
-  },
-];
+const RepairOrder = () => {
+  const [repairRequests, setRepairRequests] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-const RepairRequest = () => {
+  useEffect(() => {
+    // Функция для загрузки данных с API
+    const fetchRepairRequests = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:5271/api/Admin/RepairOrders"
+        );
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setRepairRequests(data); // Сохраняем данные в состояние
+      } catch (err) {
+        setError(err.message); // Обрабатываем ошибки
+      } finally {
+        setLoading(false); // Убираем состояние загрузки
+      }
+    };
+
+    fetchRepairRequests(); // Запускаем запрос при монтировании компонента
+  }, []);
+
+  if (loading) {
+    return <div className="p-8 text-gray-700">Loading...</div>;
+  }
+
+  if (error) {
+    return <div className="p-8 text-red-500">Error: {error}</div>;
+  }
+
   return (
     <div className="p-8 bg-gray-100 min-h-screen">
-      <h1 className="text-3xl font-bold mb-6 text-gray-800">Repair Requests</h1>
+      <h1 className="text-3xl font-bold mb-6 text-gray-800">Repair Orders</h1>
       <div className="bg-white shadow rounded-lg p-6">
         <table className="w-full text-left border-collapse">
           <thead>
@@ -65,4 +78,4 @@ const RepairRequest = () => {
   );
 };
 
-export default RepairRequest;
+export default RepairOrder;

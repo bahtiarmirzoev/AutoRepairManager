@@ -11,7 +11,6 @@ import Contacts from "./pages/Contact";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import RepairRequest from "./pages/RepairRequest";
-import Chatbot from "./components/Chatbot";
 function App() {
   return (
     <Router>
@@ -20,7 +19,6 @@ function App() {
           <Navbar />
         </header>
         <main>
-          <Chatbot />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/RegistrationPage" element={<RegistrationPage />} />
