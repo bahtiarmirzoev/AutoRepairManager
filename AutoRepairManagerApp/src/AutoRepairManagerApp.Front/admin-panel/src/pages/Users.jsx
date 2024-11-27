@@ -10,20 +10,15 @@ import {
 
 const Users = () => {
   const [users, setUsers] = useState([]);
-
   const [searchQuery, setSearchQuery] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:5271/api/admin/users")
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data);
-        setUsers(data);
-      });
+    fetch("http://localhost:5271/api/Admin/Users")
+      .then((response) => response.json())
+      .then((data) => setUsers(data))
+      .catch(() => toast.error("Failed to fetch users"));
   }, []);
 
   const handleEditUser = (user) => {
@@ -37,12 +32,15 @@ const Users = () => {
   };
 
   const handleSaveUser = (user) => {
-    if (user.id) {
-      setUsers((prevUsers) =>
-        prevUsers.map((u) => (u.id === user.id ? user : u))
-      );
-      toast.info("User updated successfully!");
-    }
+    setUsers((prevUsers) =>
+      user.id
+        ? prevUsers.map((u) => (u.id === user.id ? user : u))
+        : [...prevUsers, user]
+    );
+    toast.success(
+      user.id ? "User updated successfully!" : "User added successfully!"
+    );
+    setIsModalOpen(false);
   };
 
   const filteredUsers = users.filter(
@@ -54,7 +52,6 @@ const Users = () => {
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
       <ToastContainer />
-
       <h1 className="text-3xl font-bold text-gray-700 mb-6">Manage Users</h1>
 
       <div className="flex items-center justify-between mb-6">
@@ -85,7 +82,7 @@ const Users = () => {
               {filteredUsers.map((user) => (
                 <tr
                   key={user.id}
-                  className="hover:bg-gray-100 border-t border-gray-200 transition duration-200"
+                  className="hover:bg-gray-100 border-t border-gray-200"
                 >
                   <td className="p-4">{user.name}</td>
                   <td className="p-4">{user.email}</td>
@@ -93,13 +90,13 @@ const Users = () => {
                   <td className="p-4 flex justify-center space-x-4">
                     <button
                       onClick={() => handleEditUser(user)}
-                      className="bg-yellow-500 text-white px-3 py-1 rounded-md hover:bg-yellow-600 transition"
+                      className="bg-yellow-500 text-white px-3 py-1 rounded-md hover:bg-yellow-600"
                     >
                       <PencilIcon className="w-5 h-5" />
                     </button>
                     <button
                       onClick={() => handleDeleteUser(user.id)}
-                      className="bg-red-600 text-white px-3 py-1 rounded-md hover:bg-red-700 transition"
+                      className="bg-red-600 text-white px-3 py-1 rounded-md hover:bg-red-700"
                     >
                       <TrashIcon className="w-5 h-5" />
                     </button>

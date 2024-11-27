@@ -23,20 +23,20 @@ builder.Services.AddDbContext<AutoRepairDbContext>(dbContextOptionsBuilder =>
 
 const string LocalHostUrl = "http://localhost:5271";
 
-builder.Services.AddTransient<IEmailRepository, EmailEfCoreRepository>();
-builder.Services.AddTransient<IEmailService, EmailService>();
+builder.Services.AddScoped<IEmailRepository, EmailEfCoreRepository>();
+builder.Services.AddScoped<IEmailService, EmailService>();
 
-builder.Services.AddTransient<IAdminRepository, AdminEfCoreRepository>();
-builder.Services.AddTransient<IAdminService, AdminService>();
+builder.Services.AddScoped<IAdminRepository, AdminEfCoreRepository>();
+builder.Services.AddScoped<IAdminService, AdminService>();
 
-builder.Services.AddTransient<IAutoRepairRepository, AutoRepairEfCoreRepository>();
-builder.Services.AddTransient<IAutoRepairService, AutoRepairService>();
+builder.Services.AddScoped<IAutoRepairRepository, AutoRepairEfCoreRepository>();
+builder.Services.AddScoped<IAutoRepairService, AutoRepairService>();
 
-builder.Services.AddTransient<IIdentityRepository, IdentityEfCoreRepository>();
-builder.Services.AddTransient<IIdentityService, IdentityService>();
+builder.Services.AddScoped<IIdentityRepository, IdentityEfCoreRepository>();
+builder.Services.AddScoped<IIdentityService, IdentityService>();
 
-builder.Services.AddTransient<ILogRepository, LogEfCoreRepository>();
-builder.Services.AddTransient<ILogService, LogService>();
+builder.Services.AddScoped<ILogRepository, LogEfCoreRepository>();
+builder.Services.AddScoped<ILogService, LogService>();
 
 
 builder.Services.AddDataProtection();
@@ -45,7 +45,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("ReactAppPolicy", policy =>
     {
-        policy.WithOrigins("http://localhost:3000") 
+        policy.WithOrigins("http://localhost:3000", "http://localhost:3001" ) 
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
