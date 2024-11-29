@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "nrcY4LpO+Y8=",
+  "dgSpecHash": "msZhlblJppE=",
   "success": true,
   "projectFilePath": "C:\\Users\\bakhaalle\\Desktop\\AutoRepairManager\\AutoRepairManagerApp\\src\\AutoRepairManagerApp.Core\\AutoRepairManagerApp.Core.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\bakhaalle\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\bakhaalle\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\bakhaalle\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\bakhaalle\\.nuget\\packages\\dapper\\2.1.35\\dapper.2.1.35.nupkg.sha512",
@@ -124,7 +125,7 @@
       "code": "NU1902",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'System.Data.SqlClient' 4.8.3 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-8g2p-5pqh-5jmc",
+      "message": "У пакета \"System.Data.SqlClient\" 4.8.3 есть известная уязвимость https://github.com/advisories/GHSA-8g2p-5pqh-5jmc (уровень серьезности: средний уровень)",
       "libraryId": "System.Data.SqlClient",
       "targetGraphs": [
         "net8.0"
@@ -134,7 +135,7 @@
       "code": "NU1903",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'System.Data.SqlClient' 4.8.3 has a known high severity vulnerability, https://github.com/advisories/GHSA-98g6-xh36-x2p7",
+      "message": "У пакета \"System.Data.SqlClient\" 4.8.3 есть известная уязвимость https://github.com/advisories/GHSA-98g6-xh36-x2p7 (уровень серьезности: высокий уровень)",
       "libraryId": "System.Data.SqlClient",
       "targetGraphs": [
         "net8.0"
